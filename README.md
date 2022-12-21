@@ -1,2 +1,2 @@
-# quick-picks
-Movie Recommender application 
+# Quick-Picks
+Movie Recommender Web application created using React
