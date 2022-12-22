@@ -33,7 +33,7 @@ const Navbar = () => {
           <ul>
             {["Filter Search", "Roulette", "Account"].map((link) => (
               <li className={`nav-menu-links`} key={{ link }}>
-                <a onClick={() => setToggle(false)} href={`#${link}`}>
+                <a onClick={() => setToggle(false)} href={`./${link}`}>
                   {link}
                 </a>
               </li>

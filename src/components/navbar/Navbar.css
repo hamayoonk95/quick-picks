@@ -5,9 +5,9 @@
   background-color: #0e3a76;
   color: #fff;
   text-transform: uppercase;
-  border-radius: 0px 0px 5px 5px;
   font-weight: 550;
-  padding: 0.5rem 3rem;
+  border-radius: 0px 0px 5px 5px;
+  padding: 0.7rem 5rem;
   box-shadow: 0 5px 8px -2px rgba(0, 0, 0, 0.5);
 }
 
@@ -29,7 +29,15 @@
   gap: 2rem;
 }
 
+.nav-menu ul {
+  display: none;
+}
+
 @media screen and (max-width: 700px) {
+  .navbar {
+    padding: 0.5rem 2rem;
+  }
+
   .nav-links {
     display: none;
   }
@@ -40,6 +48,11 @@
     height: 4rem;
     flex-direction: column;
     cursor: pointer;
+  }
+
+  .hambrgr-menu:hover > * {
+    border-color: #f9ab53;
+    transition: 0.3s;
   }
 
   .ham-line {
@@ -62,6 +75,7 @@
   }
 
   .nav-menu ul {
+    display: inline-block;
     position: relative;
     bottom: 4rem;
     right: 1rem;
@@ -76,39 +90,33 @@
   }
 }
 
-
-
-
-
-
-
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-  /* Animation for Hamburger Icon */
-  .top-line-animate {
-    transform: translate(0px, 10px) rotate(45deg);
-  }
-  .middle-line-animate {
+/* Animation for Hamburger Icon */
+.top-line-animate {
+  transform: translate(0px, 10px) rotate(45deg);
+}
+.middle-line-animate {
+  opacity: 0;
+}
+.bottom-line-animate {
+  transform: translate(0px, -10px) rotate(-45deg);
+}
+.ease-transition {
+  transition: all 0.2s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
     opacity: 0;
   }
-  .bottom-line-animate {
-    transform: translate(0px, -10px) rotate(-45deg);
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
-  .ease-transition {
-    transition: all 0.2s ease;
-  }
-
-  @keyframes zoomIn {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-  }
+}
