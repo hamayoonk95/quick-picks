@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0e3a76;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   text-transform: uppercase;
   font-weight: 550;
   border-radius: 0px 0px 5px 5px;
@@ -13,13 +13,13 @@
 
 .navbar a {
   display: block;
-  color: #fff;
+  color: var(--text-color);
   text-decoration: none;
   transition: transform 0.2s;
 }
 
 .navbar a:hover {
-  color: #f9ab53;
+  color: var(--secondary-color);
   transform: scale(1.2);
 }
 
@@ -51,19 +51,19 @@
   }
 
   .hambrgr-menu:hover > * {
-    border-color: #f9ab53;
+    border-color: var(--secondary-color);
     transition: 0.3s;
   }
 
   .ham-line {
     border-radius: 10%;
     width: 50%;
-    border: 2px solid #fff;
+    border: 2px solid var(--text-color);
     margin: 3px;
   }
 
   .nav-menu {
-    background-color: #0e3a76;
+    background-color: var(--primary-color);
     position: absolute;
     left: 0;
     top: 4rem;
