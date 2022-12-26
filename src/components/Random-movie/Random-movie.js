@@ -5,7 +5,8 @@ import getRandomMovie from "../../api/randomMovie";
 
 const RandomMovie = () => {
   const [movie, setMovie] = useState(null);
-  const [prevMovie, setPrevMovie] = useState(null);
+  const [prevMovies, setPrevMovies] = useState([]);
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,13 +18,18 @@ const RandomMovie = () => {
 
   const getRandom = async () => {
     const movieData = await getRandomMovie();
-    setPrevMovie(movie);
+    setPrevMovies([...prevMovies, movie]);
+    setCurrentIdx(currentIdx + 1);
+    console.log(prevMovies);
     setMovie(movieData);
   };
 
   const goToPrev = () => {
-    setMovie(prevMovie);
-  }
+    if (currentIdx > 0 && prevMovies.length > 0) {
+      setCurrentIdx(currentIdx - 1);
+      setMovie(prevMovies[currentIdx - 1]);
+    }
+  };
 
   if (movie) {
     const words = movie.description.split(" ");
@@ -46,15 +52,15 @@ const RandomMovie = () => {
               {reducedDescription} {words.length > 20 && "..."}
             </p>
           </div>
-          <div className='icons'>
-          <div className="random-icon" onClick={getRandom}>
-            <FaRandom className="icon" />
-            Random Movie
-          </div>
-          <div className="back-icon" onClick={goToPrev}>
-            <FaArrowLeft className="icon" />
-            Go back
-          </div>
+          <div className="icons">
+            <div className="random-icon" onClick={getRandom}>
+              <FaRandom className="icon" />
+              Get Movie
+            </div>
+            <div className="back-icon" onClick={goToPrev}>
+              <FaArrowLeft className="icon" />
+              Previous
+            </div>
           </div>
         </div>
       </div>

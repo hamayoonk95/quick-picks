@@ -50,7 +50,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  transition: transform;
+  padding: 0.5rem 0 1rem 0;
 }
 
 .icon:hover {
@@ -59,6 +59,7 @@
 
 .icon {
   font-size: 2rem;
+  transition: transform 0.2s;
 }
 
 .random-icon {
@@ -87,7 +88,7 @@
 @media screen and (min-width: 550px) {
   .card {
     width: 80%;
-    height: 25rem;
+    height: 20rem;
   }
 
   .info-container {
