@@ -22,7 +22,6 @@ const RandomMovie = () => {
     const movieData = await getRandomMovie();
     setPrevMovies([...prevMovies, movie]);
     setCurrentIdx(currentIdx + 1);
-    console.log(prevMovies);
     setMovie(movieData);
   };
 
@@ -37,16 +36,15 @@ const RandomMovie = () => {
     const words = movie.description.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
-    console.log(movie);
     const {posterURL, title, year, description} = movie;
     const state = {posterURL, title, year, description}
     return (
-      <div onClick={() => navigate('/movie-page', {state} )} className="card">
+      <div className="card">
         <div className="poster-container">
           <img src={'https://image.tmdb.org/t/p/w500/'+ movie.posterURL} alt={movie.title} className="poster" />
         </div>
         <div className="info-container">
-          <div className="info">
+          <div onClick={() => navigate('/movie-page', {state} )}  className="info">
             <h2 className="title">
               {movie.title} ({movie.year.substring(0, 4)})
             </h2>
