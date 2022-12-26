@@ -20,7 +20,7 @@ const getRandomMovie = async () => {
     });
 
     return {
-      posterURL: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
+      posterURL: movie.poster_path,
       year: movie.release_date,
       genre: genreNames,
       title: movie.title,

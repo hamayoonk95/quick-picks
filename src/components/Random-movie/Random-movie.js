@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Random-movie.css";
 import { FaRandom, FaArrowLeft } from "react-icons/fa";
 import getRandomMovie from "../../api/randomMovie";
+import { useNavigate } from "react-router-dom";
 
 const RandomMovie = () => {
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [prevMovies, setPrevMovies] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -35,11 +37,13 @@ const RandomMovie = () => {
     const words = movie.description.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
-
+    console.log(movie);
+    const {posterURL, title, year, description} = movie;
+    const state = {posterURL, title, year, description}
     return (
-      <div className="card">
+      <div onClick={() => navigate('/movie-page', {state} )} className="card">
         <div className="poster-container">
-          <img src={movie.posterURL} alt={movie.title} className="poster" />
+          <img src={'https://image.tmdb.org/t/p/w500/'+ movie.posterURL} alt={movie.title} className="poster" />
         </div>
         <div className="info-container">
           <div className="info">
