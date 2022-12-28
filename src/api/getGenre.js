@@ -7,6 +7,7 @@ const getGenres = async () => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
     );
+    // console.log(response.data.genres);
     return response.data.genres;
   } catch (err) {
     console.log(err);

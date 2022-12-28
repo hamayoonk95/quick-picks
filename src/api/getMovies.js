@@ -1,14 +1,14 @@
 import axios from "axios";
 import getGenres from "./getGenre";
+import genreMapping from "./genreMapping";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 const getMovies = async (mood, timeOfDay, ratings, occassion) => {
   let randomPage = Math.floor(Math.random() * 500);
-  let genre = "";
-  if (mood === "happy" && timeOfDay === "morning") {
-    genre = "Comedy";
-  }
+
+  const genre = genreMapping[mood][timeOfDay][occassion];
+  console.log(genre);
 
   let genreID = 0;
   const genres = await getGenres();
@@ -19,12 +19,19 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
   }
 
   const getMoviesByGenre = async (genre) => {
-    // Make the API request to get a list of movies in the genre
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreID}&page=${randomPage}`
-    );
+    let page = 1;
+    let totalPages = 5;
+    let results = [];
 
-    return response.data.results;
+    while (page < totalPages) {
+      // Make the API request to get a list of movies in the genre
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreID}&page=${randomPage}`
+      );
+      results = results.concat(response.data.results);
+      page++;
+    }
+    return results;
   };
 
   const movies = await getMoviesByGenre(genre);
@@ -36,6 +43,7 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
     });
     movie.genre = genreNames; // Add the genre names to the movie object
   }
+  console.log(movies[random]);
   return movies[random];
 };
 
