@@ -1,0 +1,52 @@
+.m-movie {
+  background-color: var(--primary-color);
+  display: flex;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 8px -2px rgba(0, 0, 0, 0.5);
+}
+
+.m-poster-container {
+    width: 50%;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .m-poster {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+  }
+
+.m-info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0.8rem;
+  color: var(--text-color);
+}
+
+.m-info > div {
+  padding: 0.5rem;
+}
+
+.m-title {
+  padding: 0 0 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.m-overview {
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+
+@media screen and (min-width: 600px) {
+  .m-movie {
+    width: 60%;
+    height: 25rem;
+  }
+}

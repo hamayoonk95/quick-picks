@@ -20,12 +20,8 @@ const getRandomMovie = async () => {
     });
 
     return {
-      posterURL: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
-      year: movie.release_date,
-      genre: genreNames,
-      title: movie.title,
-      rating: movie.vote_average,
-      description: movie.overview,
+      ...movie,
+      genre: genreNames
     };
   } catch (err) {
     console.log(err);

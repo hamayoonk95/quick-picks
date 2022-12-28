@@ -1,13 +1,15 @@
 import React from "react";
-import './Popular-movies.css'
+import './Popular-movies.css';
+import { useNavigate } from "react-router-dom";
 
-const PopularMovies = ({ original_title, backdrop_path, release_date }) => {
-
+const PopularMovies = ({ title, poster_path, release_date, overview, genre }) => {
+  const navigate = useNavigate();
+  const state = {title, poster_path, release_date, overview, genre};
   return (
-    <div className="movie">
-      <img className="movie-poster" src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`} alt={original_title} />
+    <div className="movie" onClick={() => navigate('/movie-page', {state})}>
+      <img className="movie-poster" src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} />
       <div className="movie-info">
-        <div className="movie-title">{original_title}</div>
+        <div className="movie-title">{title}</div>
         <div className="movie-year">{release_date}</div>
       </div>
     </div>

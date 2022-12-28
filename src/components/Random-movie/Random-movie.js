@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Random-movie.css";
 import { FaRandom, FaArrowLeft } from "react-icons/fa";
 import getRandomMovie from "../../api/randomMovie";
+import { useNavigate } from "react-router-dom";
 
 const RandomMovie = () => {
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [prevMovies, setPrevMovies] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -20,7 +22,6 @@ const RandomMovie = () => {
     const movieData = await getRandomMovie();
     setPrevMovies([...prevMovies, movie]);
     setCurrentIdx(currentIdx + 1);
-    console.log(prevMovies);
     setMovie(movieData);
   };
 
@@ -30,24 +31,24 @@ const RandomMovie = () => {
       setMovie(prevMovies[currentIdx - 1]);
     }
   };
-
   if (movie) {
-    const words = movie.description.split(" ");
+    const words = movie.overview.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
-
+    const {poster_path, title, release_date, overview, vote_average, genre} = movie;
+    const state = {poster_path, title, release_date, overview, vote_average, genre}
     return (
       <div className="card">
         <div className="poster-container">
-          <img src={movie.posterURL} alt={movie.title} className="poster" />
+          <img src={'https://image.tmdb.org/t/p/w500/'+ poster_path} alt={title} className="poster" />
         </div>
         <div className="info-container">
-          <div className="info">
+          <div onClick={() => navigate('/movie-page', {state} )}  className="info">
             <h2 className="title">
-              {movie.title} ({movie.year.substring(0, 4)})
+              {title} ({release_date.substring(0, 4)})
             </h2>
-            <div className="rating">{movie.rating.toFixed(1)}</div>
-            <div className="genre">{movie.genre.join(", ")}</div>
+            <div className="rating">{vote_average.toFixed(1)}</div>
+            <div className="genre">{genre.join(", ")}</div>
             <p className="description">
               {reducedDescription} {words.length > 20 && "..."}
             </p>
