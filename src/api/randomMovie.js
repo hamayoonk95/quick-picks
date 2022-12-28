@@ -20,12 +20,8 @@ const getRandomMovie = async () => {
     });
 
     return {
-      posterURL: movie.poster_path,
-      year: movie.release_date,
-      genre: genreNames,
-      title: movie.title,
-      rating: movie.vote_average,
-      description: movie.overview,
+      ...movie,
+      genre: genreNames
     };
   } catch (err) {
     console.log(err);

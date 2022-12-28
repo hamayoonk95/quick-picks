@@ -9,6 +9,8 @@ const getPopularMovies = async () => {
     );
     const movies = response.data.results;
 
+    
+
     return movies;
   } catch (err) {
     console.log(err);

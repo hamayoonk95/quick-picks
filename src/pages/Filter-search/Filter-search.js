@@ -12,9 +12,10 @@ const FilterSearch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const movie = await getMovies(mood, timeOfDay, ratings, occassion);
-    const {backdrop_path, title, release_date, overview} = movie;
-    const state = {backdrop_path, title, release_date, overview}
     console.log(movie);
+    const {poster_path, title, release_date, overview,vote_average} = movie;
+    console.log(movie);
+    const state = {poster_path, title, release_date, overview, vote_average};
     navigate('/movie-page', {state} );
   };
 
