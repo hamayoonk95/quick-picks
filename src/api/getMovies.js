@@ -8,7 +8,6 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
   let randomPage = Math.floor(Math.random() * 500);
 
   const genre = genreMapping[mood][timeOfDay][occassion];
-  console.log(genre);
 
   let genreID = 0;
   const genres = await getGenres();
@@ -26,7 +25,7 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
     while (page < totalPages) {
       // Make the API request to get a list of movies in the genre
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreID}&page=${randomPage}`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreID}&page=${randomPage}&append_to_response=external_ids`
       );
       results = results.concat(response.data.results);
       page++;

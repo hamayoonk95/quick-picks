@@ -35,8 +35,8 @@ const RandomMovie = () => {
     const words = movie.overview.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
-    const {poster_path, title, release_date, overview, vote_average, genre} = movie;
-    const state = {poster_path, title, release_date, overview, vote_average, genre}
+    const {poster_path, title, release_date, overview, vote_average, genre, id} = movie;
+    const state = {poster_path, title, release_date, overview, vote_average, genre, id}
     return (
       <div className="card">
         <div className="poster-container">

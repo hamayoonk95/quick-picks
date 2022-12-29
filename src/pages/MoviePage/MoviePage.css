@@ -13,6 +13,11 @@
     flex-direction: column;
 }
 
+.s-logo {
+    width: 60px;
+    height: 60px;
+}
+
 .buttons > button {
     width: 15rem;
     padding: 1rem;

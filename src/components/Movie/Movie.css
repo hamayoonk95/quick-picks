@@ -44,7 +44,7 @@
 }
 
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 800px) {
   .m-movie {
     width: 60%;
     height: 25rem;

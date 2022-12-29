@@ -12,8 +12,8 @@ const FilterSearch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const movie = await getMovies(mood, timeOfDay, ratings, occassion);
-    const {poster_path, title, release_date, overview,vote_average, genre} = movie;
-    const state = {poster_path, title, release_date, overview, vote_average, genre};
+    const {poster_path, title, release_date, overview,vote_average, genre, id} = movie;
+    const state = {poster_path, title, release_date, overview, vote_average, genre, id};
     navigate('/movie-page', {state} );
   };
 
