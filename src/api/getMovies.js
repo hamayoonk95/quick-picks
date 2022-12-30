@@ -19,7 +19,7 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
 
   const getMoviesByGenre = async (g) => {
     let page = 1;
-    let totalPages = 20;
+    let totalPages = 50;
     let results = [];
 
     while (page < totalPages) {

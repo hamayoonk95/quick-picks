@@ -20,6 +20,10 @@
   border-radius: 10px 0 0 10px;
 }
 
+.poster:hover {
+  cursor: pointer;
+}
+
 .info-container {
   display: flex;
   flex-direction: column;
@@ -47,7 +51,6 @@
 
 .icons {
   color: var(--primary-color);
-  /* width: 100%; */
   display: flex;
   justify-content: space-around;
   padding: 0.5rem 0 1rem 0;

@@ -3,7 +3,8 @@ const genreMapping = {
       morning: {
         couple: "Comedy",
         friends: "Adventure",
-        family: "Romance"
+        family: "Romance",
+        alone: 'Drama'
       },
       afternoon: {
         couple: "Adventure",

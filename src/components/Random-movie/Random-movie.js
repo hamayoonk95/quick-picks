@@ -40,11 +40,11 @@ const RandomMovie = () => {
     return (
       <div className="card">
         <div className="poster-container">
-          <img src={'https://image.tmdb.org/t/p/w500/'+ poster_path} alt={title} className="poster" />
+          <img onClick={() => navigate('/movie-page', {state} )} src={'https://image.tmdb.org/t/p/w500/'+ poster_path} alt={title} className="poster" />
         </div>
         <div className="info-container">
-          <div onClick={() => navigate('/movie-page', {state} )}  className="info">
-            <h2 className="title">
+          <div className="info">
+            <h2 onClick={() => navigate('/movie-page', {state} )} className="title">
               {title} ({release_date.substring(0, 4)})
             </h2>
             <div className="rating">{vote_average.toFixed(1)}</div>
