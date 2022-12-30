@@ -4,10 +4,17 @@ import getGenres from "./getGenre";
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 const getRandomMovie = async () => {
-  let page = Math.floor(Math.random() * 500);
+  const params = {
+    api_key: API_KEY,
+    page: Math.floor(Math.random() * 500),
+    include_adult: false,
+    sort_by: 'popularity.desc',
+    with_original_language: 'en'
+  }
+
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}`
+      `https://api.themoviedb.org/3/discover/movie` , {params}
     );
 
     const movies = response.data.results;

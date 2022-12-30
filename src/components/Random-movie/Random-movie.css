@@ -8,10 +8,6 @@
   box-shadow: 0 5px 8px -2px rgba(0, 0, 0, 0.5);
 }
 
-.card:hover {
-  cursor: pointer;
-}
-
 .poster-container {
   width: 50%;
   height: 100%;
@@ -22,6 +18,10 @@
   height: 100%;
   object-fit: 100% 100%;
   border-radius: 10px 0 0 10px;
+}
+
+.poster:hover {
+  cursor: pointer;
 }
 
 .info-container {
@@ -39,6 +39,10 @@
   margin: 0;
 }
 
+.title:hover {
+  cursor: pointer;
+}
+
 .description {
   font-size: 0.8rem;
   color: #555;
@@ -47,7 +51,6 @@
 
 .icons {
   color: var(--primary-color);
-  /* width: 100%; */
   display: flex;
   justify-content: space-around;
   padding: 0.5rem 0 1rem 0;
