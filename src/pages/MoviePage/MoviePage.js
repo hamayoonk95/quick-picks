@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Movie, StreamingPlatformIcon } from '../../components';
 import './MoviePage.css'
 import getAvailability from '../../api/getAvailability';
+import { useNavigate } from 'react-router-dom';
 
 
 const MoviePage = () => {
@@ -17,10 +18,15 @@ const MoviePage = () => {
       setIsLoading(false);
     };
     if (isLoading) {
-      fetchData();
+      // fetchData();
     }
   }, [location.state.id, isLoading]);
-  console.log(streamingService);
+
+  const navigate = useNavigate();
+  const prevPage = () => {
+    navigate(-1);
+  }
+  
     return (
         <div className='container'>
         <div className='flex-center movie-container'>
@@ -34,7 +40,7 @@ const MoviePage = () => {
         </div>
         <div className='buttons'>  
         <button>Watch</button>
-        <button>Search Again</button>
+        <button onClick={prevPage}>Go Back</button>
         </div>
         </div>
     )

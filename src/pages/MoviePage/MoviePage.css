@@ -21,11 +21,18 @@
 .buttons > button {
     width: 15rem;
     padding: 1rem;
-    margin-top: 1rem;
+    margin: 0.5rem 0;
     border-radius: 10px;
     border: 0;
     background-color: var(--primary-color);
     color: var(--text-color);
     font-size: 1.2rem;
     font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.buttons > button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: var(--secondary-color);
 }

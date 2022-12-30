@@ -5,7 +5,7 @@ import genreMapping from "./genreMapping";
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 const getMovies = async (mood, timeOfDay, ratings, occassion) => {
-  let randomPage = Math.floor(Math.random() * 500);
+  // let randomPage = Math.floor(Math.random() * 500);
 
   const genre = genreMapping[mood][timeOfDay][occassion];
 
@@ -17,15 +17,15 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
     }
   }
 
-  const getMoviesByGenre = async (genre) => {
+  const getMoviesByGenre = async (g) => {
     let page = 1;
-    let totalPages = 5;
+    let totalPages = 20;
     let results = [];
 
     while (page < totalPages) {
       // Make the API request to get a list of movies in the genre
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreID}&page=${randomPage}&append_to_response=external_ids`
+        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&with_genres=${g}&page=${page}&vote_average.gte=${ratings}`
       );
       results = results.concat(response.data.results);
       page++;
@@ -33,7 +33,7 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
     return results;
   };
 
-  const movies = await getMoviesByGenre(genre);
+  const movies = await getMoviesByGenre(genreID);
   let random = Math.floor(Math.random() * movies.length);
   for (let i = 0; i < movies.length; i++) {
     const movie = movies[i];

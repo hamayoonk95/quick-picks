@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import getMovies from '../../api/getMovies';
-import { useNavigate } from 'react-router-dom';
+import getMovies from "../../api/getMovies";
+import { useNavigate } from "react-router-dom";
+import './Filter-search.css';
 
 const FilterSearch = () => {
   const [mood, setMood] = useState("happy");
@@ -12,16 +13,33 @@ const FilterSearch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const movie = await getMovies(mood, timeOfDay, ratings, occassion);
-    const {poster_path, title, release_date, overview,vote_average, genre, id} = movie;
-    const state = {poster_path, title, release_date, overview, vote_average, genre, id};
-    navigate('/movie-page', {state} );
+    const {
+      poster_path,
+      title,
+      release_date,
+      overview,
+      vote_average,
+      genre,
+      id,
+    } = movie;
+    const state = {
+      poster_path,
+      title,
+      release_date,
+      overview,
+      vote_average,
+      genre,
+      id,
+    };
+    navigate("/movie-page", { state });
   };
 
   return (
-    <>
+    <div className="form-container">
       <h1>Movie Recommendation Form</h1>
+
       <form onSubmit={handleSubmit}>
-        <label htmlFor="mood">Mood:</label>
+        <label htmlFor="mood">What is your current mood?</label>
         <select
           id="mood"
           value={mood}
@@ -31,8 +49,9 @@ const FilterSearch = () => {
           <option value="sad">Sad</option>
           <option value="excited">Excited</option>
           <option value="relaxed">Relaxed</option>
-        </select><br />
-        <label htmlFor="timeofday">Time of Day:</label>
+        </select>
+        <br />
+        <label htmlFor="timeofday">What is the time of day?</label>
         <select
           id="timeofday"
           value={timeOfDay}
@@ -42,8 +61,9 @@ const FilterSearch = () => {
           <option value="afternoon">Afternoon</option>
           <option value="evening">Evening</option>
           <option value="late">Late Night</option>
-        </select><br />
-        <label htmlFor="rating">Rating:</label>
+        </select>
+        <br />
+        <label htmlFor="rating">Minimum movie rating:</label>
         <select
           id="rating"
           value={ratings}
@@ -53,8 +73,9 @@ const FilterSearch = () => {
           <option value="8">&gt; 8</option>
           <option value="7">&gt; 7</option>
           <option value="any">Any</option>
-        </select><br />
-        <label htmlFor="occassion">Mood:</label>
+        </select>
+        <br />
+        <label htmlFor="occassion">What is the occasion?</label>
         <select
           id="occassion"
           value={occassion}
@@ -63,10 +84,11 @@ const FilterSearch = () => {
           <option value="couple">Couples night</option>
           <option value="friends">Friends</option>
           <option value="family">Family</option>
-        </select><br />
-        <button>Submit</button>
+        </select>
+        <br />
+        <button className="submit">Search</button>
       </form>
-    </>
+    </div>
   );
 };
 
