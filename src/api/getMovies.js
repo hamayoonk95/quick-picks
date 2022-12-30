@@ -5,27 +5,37 @@ import genreMapping from "./genreMapping";
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 const getMovies = async (mood, timeOfDay, ratings, occassion) => {
-  // let randomPage = Math.floor(Math.random() * 500);
 
   const genre = genreMapping[mood][timeOfDay][occassion];
 
-  let genreID = 0;
+  let genreID1 = 0;
+  let genreID2 = 0;
   const genres = await getGenres();
   for (let i = 0; i < genres.length; i++) {
-    if (genres[i].name === genre) {
-      genreID = genres[i].id;
+    if (genres[i].name === genre[0]) {
+      genreID1 = genres[i].id;
+    } else if(genres[i].name === genre[1]) {
+      genreID2 = genres[i].id;
     }
   }
 
-  const getMoviesByGenre = async (g) => {
+  const getMoviesByGenre = async (genreID1, genreID2) => {
     let page = 1;
     let totalPages = 50;
     let results = [];
 
+    const params = {
+      api_key: API_KEY,
+      include_adult: false,
+      sort_by: 'popularity.desc',
+      with_genres: `${genreID1},${genreID2}`,
+      with_original_language: 'en',
+      'vote_average.gte': ratings
+    }
+
     while (page < totalPages) {
-      // Make the API request to get a list of movies in the genre
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&with_genres=${g}&page=${page}&vote_average.gte=${ratings}`
+        `https://api.themoviedb.org/3/discover/movie?&page=$`, {params}
       );
       results = results.concat(response.data.results);
       page++;
@@ -33,16 +43,15 @@ const getMovies = async (mood, timeOfDay, ratings, occassion) => {
     return results;
   };
 
-  const movies = await getMoviesByGenre(genreID);
+  const movies = await getMoviesByGenre(genreID1, genreID2);
   let random = Math.floor(Math.random() * movies.length);
   for (let i = 0; i < movies.length; i++) {
     const movie = movies[i];
     const genreNames = movie.genre_ids.map((id) => {
       return genres.find((genre) => genre.id === id).name;
     });
-    movie.genre = genreNames; // Add the genre names to the movie object
+    movie.genre = genreNames;
   }
-  console.log(movies[random]);
   return movies[random];
 };
 
