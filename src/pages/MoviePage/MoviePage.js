@@ -10,7 +10,7 @@ const MoviePage = () => {
     const location = useLocation();
     const [streamingService, setStreamingService] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
+    console.log(location.state);
   useEffect(() => {
     const fetchData = async () => {
       const data = await getAvailability(location.state.id);

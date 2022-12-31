@@ -30,6 +30,7 @@
 
 .navigation {
   display: flex;
+  align-items: center;
 }
 
 .nav-links {

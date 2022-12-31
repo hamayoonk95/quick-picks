@@ -1,51 +1,57 @@
 import React, { useState } from "react";
 import "./Searchbar.css";
 import { FaSearch } from "react-icons/fa";
-import axios from "axios";
-
-const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+import SearchedMovies from "../SearchedMovies/SearchedMovies";
+import searchMovie from "../../api/searchMovie";
 
 const Searchbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [movies, setMovies] = useState([]);
+  let timeoutId;
+
+  const debounce = (func, delay) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(func, delay);
+  }
 
   const handle = () => {
     setIsSearchOpen((prev) => !prev);
-  }
-
-  //opens and closes search bar
-  const handleChange = async (e) => {
-    setSearchInput(e.target.value);
-
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}`
-      );
-      setMovies(response.data.results);
-      console.log(movies);
-    } catch (err) {
-      console.log(movies);
-      console.log(err);
-    }
   };
 
+  const handleKeyPress = async (e) => {
+    setSearchInput(e.target.value);
+  
+    debounce(async () => {
+      try {
+        const response = await searchMovie(searchInput);
+        setMovies(response.data.results.slice(0, 4));
+      } catch (err) {
+        console.log(err);
+      }
+    }, 1000);
+      
+  };
+
+  const closeSearchedMovies = () => {
+    setIsSearchOpen(false);
+  }
+
   return (
-    <>
+    <div className="search">
       <div className="search-container">
         <input
           className={`search-input ${isSearchOpen ? "expanded" : "collapsed"}`}
           type="text"
           value={searchInput}
-          onChange={handleChange}
+          onKeyDown={handleKeyPress}
+          onChange={handleKeyPress}
           placeholder="Search"
         />
         <FaSearch className="search-icon" onClick={handle} />
       </div>
-      {/* {movies.length > 0 ? movies.map((movie) => (
-        <div key={movie.id}>{movie.title}</div>
-      )) : null} */}
-    </>
+      <SearchedMovies movies={movies} isSearchOpen={isSearchOpen} closeSearchedMovies={closeSearchedMovies}/>
+    </div>
   );
 };
 
