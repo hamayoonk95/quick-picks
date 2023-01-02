@@ -6,16 +6,19 @@ import connection from "./db/connect.js";
 
 const app = express();
 
-app.get("/", (req, res) => {
-    const query = "SELECT * FROM movies WHERE id=775";
-    connection.query(query, (error, results) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.send(results);
-      } 
-    });
-  });
+import movieRouter from './routes/moviesRoutes.js';
+
+app.use(movieRouter);
+// app.get("/", (req, res) => {
+//     const query = "SELECT * FROM movies WHERE id=775";
+//     connection.query(query, (error, results) => {
+//       if (error) {
+//         res.send(error);
+//       } else {
+//         res.send(results);
+//       } 
+//     });
+//   });
 
 app.use(notFound);
 app.use(errorHandler);
