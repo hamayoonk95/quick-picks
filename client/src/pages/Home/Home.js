@@ -8,12 +8,12 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const moviesData = await getPopularMovies();
-      setMovies(moviesData);
+      const response = await fetch('/get-popular-movies');;
+      const data = await response.json();
+      setMovies(data);
     };
     fetchData();
   }, []);
-
   return (
     <>
       <div className="random-container">

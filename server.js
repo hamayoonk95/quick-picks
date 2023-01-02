@@ -7,7 +7,6 @@ import connection from "./db/connect.js";
 const app = express();
 
 import movieRouter from './routes/moviesRoutes.js';
-
 app.use(movieRouter);
 // app.get("/", (req, res) => {
 //     const query = "SELECT * FROM movies WHERE id=775";

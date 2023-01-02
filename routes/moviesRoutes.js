@@ -8,6 +8,7 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getRandomMovie, getPopularMovie);
+router.route('/get-random-movie').get(getRandomMovie);
+router.route('/get-popular-movies').get(getPopularMovie);
 
 export default router;

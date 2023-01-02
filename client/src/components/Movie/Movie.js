@@ -19,8 +19,7 @@ const Movie = (props) => {
         {props.title} ({props.release_date.substring(0, 4)})
       </div>
       <div className="m-rating">{props.vote_average}</div>
-      {props.genre &&
-      <div className="m-genre">{props.genre.join(", ")}</div>}
+      <div className="m-genre">{props.genres}</div>
       <div className="m-overview">{reducedDescription} {words.length > 40 && "..."}</div>
       </div>
     </div>

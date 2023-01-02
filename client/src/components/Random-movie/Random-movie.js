@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Random-movie.css";
 import { FaRandom, FaArrowLeft } from "react-icons/fa";
-import getRandomMovie from "../../api/randomMovie";
 import { useNavigate } from "react-router-dom";
+import noimage from "../../assets/no-image.png";
 
 const RandomMovie = () => {
   const navigate = useNavigate();
@@ -12,17 +12,21 @@ const RandomMovie = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const movieData = await getRandomMovie();
-      setMovie(movieData);
+      const response = await fetch('/get-random-movie');
+      const data = await response.json();
+      let randIdx = Math.floor(Math.random() * data.length);
+      setMovie(data[randIdx]);
     };
     fetchData();
   }, []);
 
   const getRandom = async () => {
-    const movieData = await getRandomMovie();
+    const response = await fetch('/get-random-movie');
+    const movieData = await response.json();
     setPrevMovies([...prevMovies, movie]);
     setCurrentIdx(currentIdx + 1);
-    setMovie(movieData);
+    let randIdx = Math.floor(Math.random() * movieData.length);
+    setMovie(movieData[randIdx]);
   };
 
   const goToPrev = () => {
@@ -32,23 +36,25 @@ const RandomMovie = () => {
     }
   };
   if (movie) {
-    const words = movie.overview.split(" ");
+    const {poster_path, title, release_date, overview, vote_average, genres} = movie;
+    
+    const words = overview.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
-    const {poster_path, title, release_date, overview, vote_average, genre, id} = movie;
-    const state = {poster_path, title, release_date, overview, vote_average, genre, id}
+    const state = movie;
     return (
       <div className="card">
-        <div className="poster-container">
-          <img onClick={() => navigate('/movie-page', {state} )} src={'https://image.tmdb.org/t/p/w500/'+ poster_path} alt={title} className="poster" />
+        <div onClick={() => navigate('/movie-page', {state} )} className="poster-container">
+        {poster_path ? (<img src={'https://image.tmdb.org/t/p/w500/'+ poster_path} alt={title} className="poster" />) : (<img src={noimage} alt={title} className="poster" />)}
+          
         </div>
         <div className="info-container">
           <div className="info">
             <h2 onClick={() => navigate('/movie-page', {state} )} className="title">
               {title} ({release_date.substring(0, 4)})
             </h2>
-            <div className="rating">{vote_average.toFixed(1)}</div>
-            <div className="genre">{genre.join(", ")}</div>
+            <div className="rating">{vote_average}</div>
+            <div className="genre">{genres}</div>
             <p className="description">
               {reducedDescription} {words.length > 20 && "..."}
             </p>
