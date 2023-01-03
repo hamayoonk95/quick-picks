@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Random-movie.css";
 import { FaRandom, FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import noimage from "../../assets/no-image.png";
 
 const RandomMovie = () => {
@@ -24,7 +24,6 @@ const RandomMovie = () => {
     const movieData = await response.json();
     setPrevMovies([...prevMovies, movie]);
     setCurrentIdx(currentIdx + 1);
-    console.log(movieData);
     setMovie(movieData[0]);
   };
 
@@ -35,17 +34,16 @@ const RandomMovie = () => {
     }
   };
   if (movie) {
-    const { poster_path, title, release_date, overview, vote_average, genres } =
+    const { poster_path, title, release_date, overview, vote_average, genres, id } =
       movie;
 
     const words = overview.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
-    const state = movie;
     return (
       <div className="card">
         <div
-          onClick={() => navigate("/movie-page", { state })}
+          onClick={() => navigate(`/movie/${id}`)}
           className="poster-container"
         >
           {poster_path ? (
@@ -61,7 +59,7 @@ const RandomMovie = () => {
         <div className="info-container">
           <div className="info">
             <h2
-              onClick={() => navigate("/movie-page", { state })}
+              onClick={() => navigate(`/movie/${id}`)}
               className="title"
             >
               {title} ({release_date})

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Movie.css";
+import noimage from '../../assets/no-image.png'
 
 const Movie = (props) => {
     const words = props.overview.split(" ");
@@ -10,7 +11,7 @@ const Movie = (props) => {
     <div className="m-poster-container">
       <img
         className="m-poster"
-        src={"https://image.tmdb.org/t/p/original/" + props.poster_path}
+        src={props.poster_path ? "https://image.tmdb.org/t/p/original/" + props.poster_path : noimage}
         alt={props.title}
       />
       </div>

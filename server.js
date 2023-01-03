@@ -10,6 +10,17 @@ import movieRouter from './routes/moviesRoutes.js';
 
 app.use(movieRouter);
 
+app.get("/movie/:id", (req, res) => {
+    const query = `SELECT * FROM movies WHERE id=${req.params.id}`;
+  connection.query(query, (err, result) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(result)
+    }
+  });
+})
+
 app.use(notFound);
 app.use(errorHandler);
 

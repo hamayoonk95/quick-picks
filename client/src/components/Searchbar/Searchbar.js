@@ -2,36 +2,40 @@ import React, { useState } from "react";
 import "./Searchbar.css";
 import { FaSearch } from "react-icons/fa";
 import SearchedMovies from "../SearchedMovies/SearchedMovies";
-import searchMovie from "../../api/searchMovie";
 
 const Searchbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [movies, setMovies] = useState([]);
-  let timeoutId;
+  // let timeoutId;
 
-  const debounce = (func, delay) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(func, delay);
-  }
+  // const debounce = (func, delay) => {
+  //   clearTimeout(timeoutId);
+  //   timeoutId = setTimeout(func, delay);
+  // }
 
-  const handle = () => {
+  const handleSearchOpen = () => {
     setIsSearchOpen((prev) => !prev);
   };
 
   const handleKeyPress = async (e) => {
     setSearchInput(e.target.value);
-  
-    debounce(async () => {
+    if(e.key === "Enter") {
       try {
-        const response = await searchMovie(searchInput);
-        setMovies(response.data.results.slice(0, 4));
+        console.log(searchInput);
+        const response = await fetch(`/search?query=${searchInput}`);
+        const data = await response.json();
+        console.log(data.slice(0,4));
+        setMovies(data);
       } catch (err) {
         console.log(err);
       }
-    }, 1000);
-      
+    }      
   };
+
+  const onChange = async (e) => {
+    
+  }
 
   const closeSearchedMovies = () => {
     setIsSearchOpen(false);
@@ -48,7 +52,7 @@ const Searchbar = () => {
           onChange={handleKeyPress}
           placeholder="Search"
         />
-        <FaSearch className="search-icon" onClick={handle} />
+        <FaSearch className="search-icon" onClick={handleSearchOpen} />
       </div>
       <SearchedMovies movies={movies} isSearchOpen={isSearchOpen} closeSearchedMovies={closeSearchedMovies}/>
     </div>

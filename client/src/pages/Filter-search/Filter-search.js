@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import getMovies from "../../api/getMovies";
+// import getMovies from "../../api/getMovies";
 import { useNavigate } from "react-router-dom";
 import "./Filter-search.css";
 import CircleLoader from "react-spinners/CircleLoader";
@@ -10,40 +10,34 @@ const FilterSearch = () => {
   const [ratings, setRatings] = useState("9");
   const [occassion, setOccassion] = useState("couple");
   const [loading, setLoading] = useState(false);
+  let id;
+
+  const getMovie = async (mood, timeOfDay, ratings, occassion) => {
+    const response = await fetch(
+      `/filter-movies?mood=${mood}&timeOfDay=${timeOfDay}&ratings=${ratings}&occassion=${occassion}`
+    );
+    const movie = await response.json();
+    id = movie[0].id;
+  };
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const movie = await getMovies(mood, timeOfDay, ratings, occassion);
-    const {
-      poster_path,
-      title,
-      release_date,
-      overview,
-      vote_average,
-      genre,
-      id,
-    } = movie;
-    const state = {
-      poster_path,
-      title,
-      release_date,
-      overview,
-      vote_average,
-      genre,
-      id,
-    };
-    navigate("/movie-page", { state });
+
+    getMovie(mood, timeOfDay, ratings, occassion).then(() => {
+     navigate(`/movie/${id}`);
+    });
   };
+
 
   return (
     <div className="form-container">
       <h1>Movie Recommendation Form</h1>
       {loading ? (
-        <div className='loader-container'>
-        <CircleLoader className='loader' size={40} color='#0e3a76' />
-        <p>Searching...</p>
+        <div className="loader-container">
+          <CircleLoader className="loader" size={40} color="#0e3a76" />
+          <p>Searching...</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -80,7 +74,8 @@ const FilterSearch = () => {
             <option value="9">&gt; 9</option>
             <option value="8">&gt; 8</option>
             <option value="7">&gt; 7</option>
-            <option value="any">Any</option>
+            <option value="6">&gt; 6</option>
+            <option value="0">Any</option>
           </select>
           <br />
           <label htmlFor="occassion">What is the occasion?</label>
@@ -89,7 +84,7 @@ const FilterSearch = () => {
             value={occassion}
             onChange={(e) => setOccassion(e.target.value)}
           >
-            <option value='alone'>Alone</option>
+            <option value="alone">Alone</option>
             <option value="couple">Couples night</option>
             <option value="friends">Friends</option>
             <option value="family">Family</option>

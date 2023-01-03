@@ -15,7 +15,7 @@ function App() {
         <Route path="/filter-search" element={<FilterSearch />}></Route>
         <Route path="/roulette" element={<Roulette />}></Route>
         <Route path="/account" element={<Account />}></Route>
-        <Route path="/movie-page" element={<MoviePage />}></Route>
+        <Route path="/movie/:id" element={<MoviePage />}></Route>
       </Routes>
     </div>
   );

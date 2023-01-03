@@ -13,7 +13,6 @@ const getAvailability = async (id) => {
       };
       return axios.request(options).then(function (response) {
         const result = response.data;
-        console.log(result);
         return result;
     }).catch(function (error) {
         console.error(error);

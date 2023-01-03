@@ -8,9 +8,8 @@ const SearchedMovies = (props) => {
 
   const handleMovieClick = (movie) => {
     closeSearchedMovies();
-    const {title, poster_path, release_date, overview, genre, id} = movie;
-    const state = {title, poster_path, release_date, overview, genre, id};
-    navigate('/movie-page', {state});
+    // const {title, poster_path, release_date, overview, genre, id} = movie;
+    navigate(`/movie/${movie.id}`);
   }
 
   return (
@@ -24,7 +23,7 @@ const SearchedMovies = (props) => {
                   alt={movie.title}
                 />
                 <div key={movie.id}>
-                  {movie.title} ({movie.release_date.substring(0, 4)})
+                  {movie.title} ({movie.release_date})
                 </div>
               </div>
           ))

@@ -13,9 +13,12 @@
     flex-direction: column;
 }
 
-.s-logo {
-    width: 60px;
-    height: 60px;
+.streaming-icons {
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 2rem;
 }
 
 .buttons > button {

@@ -1,4 +1,5 @@
 import React from "react";
+import './StreamingPlatformIcon.css';
 
 const StreamingPlatformIcon = ({src, link}) => {
     let icon;
@@ -22,7 +23,7 @@ const StreamingPlatformIcon = ({src, link}) => {
             icon = null;
     }
 
-    return icon ? <a href={link}><img className="s-logo" src={icon} alt="Hello" /></a> : null;
+    return icon ? <a href={link}><img className="s-icon" src={icon} alt="Hello" /></a> : null;
 }
 
 export default StreamingPlatformIcon;
