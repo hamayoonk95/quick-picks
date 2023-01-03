@@ -3,7 +3,7 @@ import connection from "./connect.js";
 const getRandomMovie = (req, res) => {
   let rand = Math.floor(Math.random() * 50000);
   // const query = "SELECT * FROM movies1 WHERE original_language = 'en' AND poster_path IS NOT NULL AND release_date > '2010' ORDER BY RAND() LIMIT 1";
-  const query = `SELECT * from dummy where vote_average > 7 AND release_date > 2000 AND (original_language = 'en' OR original_language = 'uk')`;
+  const query = `SELECT * FROM movies WHERE vote_average > 5 AND release_date > 2020 AND (original_language = 'en' OR original_language = 'uk') AND genres NOT LIKE '%music%' ORDER BY RAND() LIMIT 1`;
   connection.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -14,7 +14,7 @@ const getRandomMovie = (req, res) => {
 };
 
 const getPopularMovie = (req, res) => {
-  const query = `SELECT * FROM dummy WHERE (original_language = 'en' OR original_language = 'uk') AND runtime > 0 ORDER BY release_date DESC LIMIT 20`;
+  const query = `SELECT * FROM popular_movies`;
   connection.query(query, (err, result) => {
     if (err) {
       console.log(err);

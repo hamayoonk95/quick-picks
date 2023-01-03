@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import { RandomMovie, PopularMovies } from "../../components";
-import getPopularMovies from "../../api/getPopularMovies";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
