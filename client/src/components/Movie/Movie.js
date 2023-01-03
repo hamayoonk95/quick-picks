@@ -16,7 +16,7 @@ const Movie = (props) => {
       </div>
       <div className="m-info">
       <div className="m-title">
-        {props.title} ({props.release_date.substring(0, 4)})
+        {props.title} ({props.release_date})
       </div>
       <div className="m-rating">{props.vote_average}</div>
       <div className="m-genre">{props.genres}</div>

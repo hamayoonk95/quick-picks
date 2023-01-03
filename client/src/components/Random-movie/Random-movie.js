@@ -12,7 +12,7 @@ const RandomMovie = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('/get-random-movie');
+      const response = await fetch("/get-random-movie");
       const data = await response.json();
       setMovie(data[0]);
     };
@@ -20,10 +20,11 @@ const RandomMovie = () => {
   }, []);
 
   const getRandom = async () => {
-    const response = await fetch('/get-random-movie');
+    const response = await fetch("/get-random-movie");
     const movieData = await response.json();
     setPrevMovies([...prevMovies, movie]);
     setCurrentIdx(currentIdx + 1);
+    console.log(movieData);
     setMovie(movieData[0]);
   };
 
@@ -34,24 +35,40 @@ const RandomMovie = () => {
     }
   };
   if (movie) {
-    const {poster_path, title, release_date, overview, vote_average, genres} = movie;
-    
+    const { poster_path, title, release_date, overview, vote_average, genres } =
+      movie;
+
     const words = overview.split(" ");
     const reducedWords = words.slice(0, 20);
     const reducedDescription = reducedWords.join(" ");
     const state = movie;
     return (
       <div className="card">
-        <div onClick={() => navigate('/movie-page', {state} )} className="poster-container">
-        {poster_path ? (<img src={'https://image.tmdb.org/t/p/w500/'+ poster_path} alt={title} className="poster" />) : (<img src={noimage} alt={title} className="poster" />)}
-          
+        <div
+          onClick={() => navigate("/movie-page", { state })}
+          className="poster-container"
+        >
+          {poster_path ? (
+            <img
+              src={"https://image.tmdb.org/t/p/w500/" + poster_path}
+              alt={title}
+              className="poster"
+            />
+          ) : (
+            <img src={noimage} alt={title} className="poster" />
+          )}
         </div>
         <div className="info-container">
           <div className="info">
-            <h2 onClick={() => navigate('/movie-page', {state} )} className="title">
-              {title} ({release_date.substring(0, 4)})
+            <h2
+              onClick={() => navigate("/movie-page", { state })}
+              className="title"
+            >
+              {title} ({release_date})
             </h2>
-            <div className="rating">{vote_average}</div>
+            {vote_average > 0 ? (
+              <div className="rating">{vote_average}</div>
+            ) : null}
             <div className="genre">{genres}</div>
             <p className="description">
               {reducedDescription} {words.length > 20 && "..."}
