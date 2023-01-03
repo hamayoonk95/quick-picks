@@ -1,0 +1,10 @@
+.s-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.s-icon:hover {
+    transform: scale(1.05);
+}
