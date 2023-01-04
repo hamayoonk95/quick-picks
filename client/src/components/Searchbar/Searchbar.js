@@ -33,10 +33,6 @@ const Searchbar = () => {
     }      
   };
 
-  const onChange = async (e) => {
-    
-  }
-
   const closeSearchedMovies = () => {
     setIsSearchOpen(false);
   }

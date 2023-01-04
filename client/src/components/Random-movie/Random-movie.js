@@ -67,7 +67,7 @@ const RandomMovie = () => {
             {vote_average > 0 ? (
               <div className="rating">{vote_average}</div>
             ) : null}
-            <div className="genre">{genres}</div>
+            <div className="genre">{genres.split("-").join(", ")}</div>
             <p className="description">
               {reducedDescription} {words.length > 20 && "..."}
             </p>

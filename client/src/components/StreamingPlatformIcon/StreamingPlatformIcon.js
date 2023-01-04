@@ -14,7 +14,7 @@ const StreamingPlatformIcon = ({src, link}) => {
         icon = require("../../assets/prime.png");
         break;
         case 'disney_plus':
-        icon = require("../../assets/disney.png");
+        icon = require("../../assets/disney+.png");
         break;
         case 'apple_tv':
         icon = require("../../assets/disney.png");

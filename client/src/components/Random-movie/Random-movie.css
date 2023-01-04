@@ -33,6 +33,13 @@
   padding: 0.5rem;
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 70%;
+}
+
 .title {
   font-size: 1.2rem;
   font-weight: 600;
@@ -54,6 +61,7 @@
   color: var(--primary-color);
   display: flex;
   justify-content: space-around;
+  height: 20%;
   padding: 0.5rem 0 1rem 0;
 }
 
@@ -75,6 +83,7 @@
 }
 
 .random-icon:hover {
+  color: var(--secondary-color);
   cursor: pointer;
 }
 
@@ -86,6 +95,7 @@
 }
 
 .back-icon:hover {
+  color: var(--secondary-color);
   cursor: pointer;
 }
 

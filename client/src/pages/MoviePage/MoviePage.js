@@ -59,9 +59,9 @@ const MoviePage = () => {
               link={service.link}
             />
           ))} */}
-          {/* <StreamingPlatformIcon key={"abc"} src={"netflix"} link={"//"} />
+          <StreamingPlatformIcon key={"abc"} src={"netflix"} link={"//"} />
           <StreamingPlatformIcon key={"aa"} src={"disney_plus"} link={"//"} />
-          <StreamingPlatformIcon key={"aa"} src={"vudu"} link={"//"} /> */}
+          <StreamingPlatformIcon key={"aab"} src={"vudu"} link={"//"} />
       </div>
       <div className="buttons">
         <button>Watch</button>
