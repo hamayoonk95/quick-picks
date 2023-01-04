@@ -8,7 +8,6 @@ const SearchedMovies = (props) => {
 
   const handleMovieClick = (movie) => {
     closeSearchedMovies();
-    // const {title, poster_path, release_date, overview, genre, id} = movie;
     navigate(`/movie/${movie.id}`);
   }
 

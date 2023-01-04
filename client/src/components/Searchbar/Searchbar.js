@@ -6,36 +6,29 @@ import SearchedMovies from "../SearchedMovies/SearchedMovies";
 const Searchbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [movies, setMovies] = useState([]);
-  // let timeoutId;
+  const [ movies, setMovies] = useState([]);
 
-  // const debounce = (func, delay) => {
-  //   clearTimeout(timeoutId);
-  //   timeoutId = setTimeout(func, delay);
-  // }
-
-  const handleSearchOpen = () => {
+  const toggleSearchOpen = () => {
     setIsSearchOpen((prev) => !prev);
   };
 
-  const handleKeyPress = async (e) => {
+  const handleInput = async (e) => {
     setSearchInput(e.target.value);
-    if(e.key === "Enter") {
+    if (e.key === "Enter" || e.type === "change") {
       try {
-        console.log(searchInput);
         const response = await fetch(`/search?query=${searchInput}`);
         const data = await response.json();
-        console.log(data.slice(0,4));
+        console.log(data);
         setMovies(data);
       } catch (err) {
         console.log(err);
       }
-    }      
+    }
   };
 
   const closeSearchedMovies = () => {
     setIsSearchOpen(false);
-  }
+  };
 
   return (
     <div className="search">
@@ -44,13 +37,12 @@ const Searchbar = () => {
           className={`search-input ${isSearchOpen ? "expanded" : "collapsed"}`}
           type="text"
           value={searchInput}
-          onKeyDown={handleKeyPress}
-          onChange={handleKeyPress}
+          onChange={handleInput}
           placeholder="Search"
         />
-        <FaSearch className="search-icon" onClick={handleSearchOpen} />
+        <FaSearch className="search-icon" onClick={toggleSearchOpen} />
       </div>
-      <SearchedMovies movies={movies} isSearchOpen={isSearchOpen} closeSearchedMovies={closeSearchedMovies}/>
+      <SearchedMovies movies={movies} isSearchOpen={isSearchOpen} closeSearchedMovies={closeSearchedMovies} />
     </div>
   );
 };
