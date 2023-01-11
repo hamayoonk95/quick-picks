@@ -40,7 +40,7 @@ const FilterSearch = () => {
           <p>Searching...</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form className="filter-search-form" onSubmit={handleSubmit}>
           <label htmlFor="mood">What is your current mood?</label>
           <select
             id="mood"

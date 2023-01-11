@@ -7,6 +7,7 @@ const Searchbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [ movies, setMovies] = useState([]);
+  const [debounceTimeout, setDebounceTimeout] = useState(null);
 
   const toggleSearchOpen = () => {
     setIsSearchOpen((prev) => !prev);
@@ -14,16 +15,22 @@ const Searchbar = () => {
 
   const handleInput = async (e) => {
     setSearchInput(e.target.value);
-    if (e.key === "Enter" || e.type === "change") {
-      try {
-        const response = await fetch(`/search?query=${searchInput}`);
-        const data = await response.json();
-        console.log(data);
-        setMovies(data);
-      } catch (err) {
-        console.log(err);
-      }
+    if(debounceTimeout) {
+      clearTimeout(debounceTimeout);
     }
+    setDebounceTimeout(
+      setTimeout(async () => {
+        try {
+          const response = await fetch(`/search?query=${searchInput}`);
+          const data = await response.json();
+          console.log(data);
+          setMovies(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }, 500)
+    );
+      
   };
 
   const closeSearchedMovies = () => {
