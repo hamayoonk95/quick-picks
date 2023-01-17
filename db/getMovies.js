@@ -45,7 +45,7 @@ const searchMovie = (req, res) => {
 const rouletteSearch = (req, res) => {
   if (req.query.query) {
     const input = req.query.query;
-    const query = `SELECT * FROM movies WHERE title LIKE '%${input}%' LIMIT 4`;
+    const query = `SELECT * FROM movies WHERE title LIKE '%${input}%' ORDER BY popularity DESC LIMIT 4`;
     connection.query(query, (err, result) => {
       if (err) {
         console.log(err);

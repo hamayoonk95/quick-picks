@@ -19,7 +19,7 @@ const Roulette = () => {
   };
 
   const handleSpinClick = () => {
-    if(data.length == 0) {
+    if(data.length === 0) {
       alert("Roulette is Empty")
       return;
     }
