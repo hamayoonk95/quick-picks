@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RouletteWheel from "../../components/Roulette/RouletteWheel";
+import RouletteSearch from "../../components/RouletteSearch/RouletteSearch";
 import "./Roulette.css";
 
 const Roulette = () => {
@@ -9,29 +10,50 @@ const Roulette = () => {
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [values, setValues] = useState("");
   const [data, setData] = useState([]);
-  const [movie, setMovie] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(true);
+  const [debounceTimeout, setDebounceTimeout] = useState(null);
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
 
   const handleSpinClick = () => {
+    if(data.length == 0) {
+      alert("Roulette is Empty")
+      return;
+    }
     const newPrizeNumber = Math.floor(Math.random() * data.length);
     setPrizeNumber(newPrizeNumber);
     setMustSpin(true);
   };
 
   const onChange = async (e) => {
+    setIsDropdownOpen(true);
     setValues(e.target.value);
-    try {
-      const response = await fetch(`/search?query=${values}`);
-      const movies = await response.json();
-      console.log(movies);
-      setMovie(movies[0]);
-    } catch (err) {
-      console.log(err);
+    if (!e.target.value) {
+      setIsDropdownOpen(false);
     }
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+    setDebounceTimeout(
+      setTimeout(async () => {
+        try {
+          const response = await fetch(`/rouletteSearch?query=${values}`);
+          const movies = await response.json();
+          console.log(movies);
+          setMovies(movies);
+        } catch (err) {
+          console.log(err);
+        }
+      }, 500)
+    );
   };
 
-  const addToRoulette = async (e) => {
+  const addToRoulette = async (e, movie) => {
     e.preventDefault();
-    setData([...data, { option: movie.title.substring(0, 25), id: movie.id }]);
+    setData([...data, { option: movie.title.substring(0, 20), id: movie.id }]);
     setValues("");
   };
   return (
@@ -47,18 +69,27 @@ const Roulette = () => {
             navigate(`/movie/${selectedItem.id}`);
           }}
         />
-
-        <button onClick={handleSpinClick}>SPIN</button>
       </div>
-      <div className="names">
-        <div className="n">
-          {data && data.length ? data.map((d) => <div>{d.option}</div>) : null}
-        </div>
-        <form className="roulette-form" onSubmit={addToRoulette}>
-          <input type="text" value={values} onChange={onChange} />
-          <button type="submit">Submit</button>
-        </form>
+      <div>
+        <button className="spin-btn" onClick={handleSpinClick}>
+          SPIN
+        </button>
       </div>
+      <form className="roulette-form" onSubmit={addToRoulette}>
+        <label>Insert Movie</label>
+        <input
+          className="roulette-input"
+          type="text"
+          value={values}
+          onChange={onChange}
+        />
+      </form>
+      <RouletteSearch
+        movies={movies}
+        addToRoulette={addToRoulette}
+        isDropdownOpen={isDropdownOpen}
+        closeDropdown={closeDropdown}
+      />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import getMovies from "../../api/getMovies";
 import { useNavigate } from "react-router-dom";
 import "./Filter-search.css";
 import CircleLoader from "react-spinners/CircleLoader";
