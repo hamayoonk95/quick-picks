@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import getMovies from "../../api/getMovies";
 import { useNavigate } from "react-router-dom";
 import "./Filter-search.css";
 import CircleLoader from "react-spinners/CircleLoader";
@@ -40,7 +39,7 @@ const FilterSearch = () => {
           <p>Searching...</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form className="filter-search-form" onSubmit={handleSubmit}>
           <label htmlFor="mood">What is your current mood?</label>
           <select
             id="mood"

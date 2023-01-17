@@ -20,7 +20,7 @@ const Movie = (props) => {
         {props.title} ({props.release_date})
       </div>
       <div className="m-rating">{props.vote_average}</div>
-      <div className="m-genre">{props.genres}</div>
+      <div className="m-genre">{props.genres.split("-").join(", ")}</div>
       <div className="m-overview">{reducedDescription} {words.length > 40 && "..."}</div>
       </div>
     </div>

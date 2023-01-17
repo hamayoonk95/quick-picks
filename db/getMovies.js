@@ -3,8 +3,9 @@ import genreMapping from "./genreMapping.js";
 
 const getRandomMovie = (req, res) => {
   let rand = Math.floor(Math.random() * 200000);
-  const query = `SELECT * FROM movies WHERE RAND() < (SELECT ((1 / COUNT(*)) * 10) FROM movies) LIMIT 1`;
-  // const query = `select * from movies where id=${rand}`;
+  // const query = `SELECT * FROM movies WHERE RAND() < (SELECT ((1 / COUNT(*)) * 10) FROM movies) LIMIT 1`;
+  const query = `SELECT * FROM movies WHERE poster_path != '' AND RAND() < (SELECT ((1 / COUNT(*)) * 10) FROM movies) LIMIT 1`;
+
   connection.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -28,7 +29,23 @@ const getPopularMovie = (req, res) => {
 const searchMovie = (req, res) => {
   if (req.query.query) {
     const input = req.query.query;
-    const query = `SELECT * FROM movies WHERE title LIKE '%${input}%' ORDER BY popularity DESC`;
+    const query = `SELECT * FROM movies WHERE (title LIKE '%${input}%' OR genres LIKE '%${input}%') ORDER BY popularity DESC LIMIT 4`;
+    connection.query(query, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+    });
+  } else {
+    res.send([]);
+  }
+};
+
+const rouletteSearch = (req, res) => {
+  if (req.query.query) {
+    const input = req.query.query;
+    const query = `SELECT * FROM movies WHERE title LIKE '%${input}%' LIMIT 4`;
     connection.query(query, (err, result) => {
       if (err) {
         console.log(err);
@@ -71,6 +88,7 @@ export {
   getRandomMovie,
   getPopularMovie,
   searchMovie,
+  rouletteSearch,
   filterSearch,
   getMoviebyID,
 };

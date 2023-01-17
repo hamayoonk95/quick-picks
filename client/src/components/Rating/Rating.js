@@ -4,8 +4,9 @@ import { FaStar } from 'react-icons/fa';
 function Rating({ rating }) {
     console.log(rating);
   // Calculate the number of full stars and half stars
-  const fullStars = Math.floor(rating);
-  const halfStars = rating - fullStars >= 0.5 ? 1 : 0;
+  const ratingDiv = rating/2;
+  const fullStars = Math.floor(ratingDiv);
+  const halfStars = ratingDiv - fullStars >= 0.5 ? 1 : 0;
 
   // Create an array of full stars
   const fullStarElements = Array.from({ length: fullStars }, (_, i) => (
