@@ -7,13 +7,14 @@ const FilterSearch = () => {
   const [mood, setMood] = useState("happy");
   const [timeOfDay, setTimeOfDay] = useState("morning");
   const [ratings, setRatings] = useState("9");
-  const [occassion, setOccassion] = useState("couple");
+  const [occassion, setOccassion] = useState("alone");
+  const [releaseDate, setReleaseDate] = useState("2020-2023");
   const [loading, setLoading] = useState(false);
   let id;
 
   const getMovie = async (mood, timeOfDay, ratings, occassion) => {
     const response = await fetch(
-      `/filter-movies?mood=${mood}&timeOfDay=${timeOfDay}&ratings=${ratings}&occassion=${occassion}`
+      `/filter-movies?mood=${mood}&timeOfDay=${timeOfDay}&ratings=${ratings}&occassion=${occassion}&releaseDate=${releaseDate}`
     );
     const movie = await response.json();
     id = movie[0].id;
@@ -64,6 +65,18 @@ const FilterSearch = () => {
             <option value="late">Late Night</option>
           </select>
           <br />
+          <label htmlFor="occassion">What is the occasion?</label>
+          <select
+            id="occassion"
+            value={occassion}
+            onChange={(e) => setOccassion(e.target.value)}
+          >
+            <option value="alone">Alone</option>
+            <option value="couple">Couples night</option>
+            <option value="friends">Friends</option>
+            <option value="family">Family</option>
+          </select>
+          <br />
           <label htmlFor="rating">Minimum movie rating:</label>
           <select
             id="rating"
@@ -77,16 +90,18 @@ const FilterSearch = () => {
             <option value="0">Any</option>
           </select>
           <br />
-          <label htmlFor="occassion">What is the occasion?</label>
+          <label htmlFor="rating">Release Date:</label>
           <select
-            id="occassion"
-            value={occassion}
-            onChange={(e) => setOccassion(e.target.value)}
+            id="release"
+            value={releaseDate}
+            onChange={(e) => setReleaseDate(e.target.value)}
           >
-            <option value="alone">Alone</option>
-            <option value="couple">Couples night</option>
-            <option value="friends">Friends</option>
-            <option value="family">Family</option>
+            <option value="2020-2023">2020-Present</option>
+            <option value="2010-2019">2010-2019</option>
+            <option value="2000-2009">2000-2009</option>
+            <option value="1990-1999">1990-1999</option>
+            <option value="1980-1989">1980-1989</option>
+            <option value="1950-2023">Any</option>
           </select>
           <br />
           <button className="submit">Search</button>
