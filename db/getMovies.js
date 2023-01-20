@@ -45,7 +45,7 @@ const searchMovie = (req, res) => {
 const rouletteSearch = (req, res) => {
   if (req.query.query) {
     const input = req.query.query;
-    const query = `SELECT * FROM movies WHERE title LIKE '%${input}%' LIMIT 4`;
+    const query = `SELECT * FROM movies WHERE title LIKE '%${input}%' ORDER BY popularity DESC LIMIT 4`;
     connection.query(query, (err, result) => {
       if (err) {
         console.log(err);
@@ -59,11 +59,9 @@ const rouletteSearch = (req, res) => {
 };
 
 const filterSearch = (req, res) => {
-  const { mood, timeOfDay, ratings, occassion } = req.query;
-
+  const { mood, timeOfDay, ratings, occassion, releaseDate } = req.query;
   const genre = genreMapping[mood][timeOfDay][occassion];
-  console.log(genre);
-  const query = `SELECT * FROM movies WHERE (genres LIKE '%${genre[0]}%' AND genres LIKE '%${genre[1]}%') AND vote_average > ${ratings} ORDER BY RAND() LIMIT 1`;
+  const query = `SELECT * FROM movies WHERE (genres LIKE '%${genre[0]}%' AND genres LIKE '%${genre[1]}%') AND vote_average > ${ratings} AND release_date BETWEEN '${releaseDate.split('-')[0]}' AND '${releaseDate.split('-')[1]}' ORDER BY RAND() LIMIT 1`;
   connection.query(query, (err, result) => {
     if (err) {
       console.log(err);

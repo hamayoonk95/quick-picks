@@ -19,7 +19,7 @@ const Roulette = () => {
   };
 
   const handleSpinClick = () => {
-    if(data.length == 0) {
+    if(data.length === 0) {
       alert("Roulette is Empty")
       return;
     }
@@ -57,7 +57,7 @@ const Roulette = () => {
     setValues("");
   };
   return (
-    <div className="roulette-container">
+    <div className="roulette-container" onClick={closeDropdown}>
       <div className="wheel">
         <RouletteWheel
           mustSpin={mustSpin}
