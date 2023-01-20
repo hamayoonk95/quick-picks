@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Random-movie.css";
 import { FaRandom, FaArrowLeft } from "react-icons/fa";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import noimage from "../../assets/no-image.png";
 
 const RandomMovie = () => {
@@ -34,14 +34,21 @@ const RandomMovie = () => {
     }
   };
   if (movie) {
-    const { poster_path, title, release_date, overview, vote_average, genres, id } =
-      movie;
+    const {
+      poster_path,
+      title,
+      release_date,
+      overview,
+      vote_average,
+      genres,
+      id,
+    } = movie;
 
     const words = overview.split(" ");
-    const reducedWords = words.slice(0, 20);
+    const reducedWords = words.slice(0, 30);
     const reducedDescription = reducedWords.join(" ");
     return (
-      <div className="card">
+      <div className="card flex-center">
         <div
           onClick={() => navigate(`/movie/${id}`)}
           className="poster-container"
@@ -57,30 +64,27 @@ const RandomMovie = () => {
           )}
         </div>
         <div className="info-container">
-          <div className="info">
-            <h2
-              onClick={() => navigate(`/movie/${id}`)}
-              className="title"
-            >
-              {title} ({release_date})
-            </h2>
-            {vote_average > 0 ? (
-              <div className="rating">{vote_average}</div>
-            ) : null}
+            <div className="title-rating">
+              <h2 onClick={() => navigate(`/movie/${id}`)} className="title">
+                {title.split(" ").slice(0,5).join(" ")} ({release_date})
+              </h2>
+              {vote_average > 0 ? (
+                <div className="rating">{vote_average}</div>
+              ) : null}
+            </div>
             <div className="genre">{genres.split("-").join(", ")}</div>
             <p className="description">
-              {reducedDescription} {words.length > 20 && "..."}
+              {reducedDescription} {words.length > 30 && "..."}
             </p>
+        </div>
+        <div className="icons">
+          <div className="random-icon" onClick={getRandom}>
+            <FaRandom className="icon" />
+            Get Movie
           </div>
-          <div className="icons">
-            <div className="random-icon" onClick={getRandom}>
-              <FaRandom className="icon" />
-              Get Movie
-            </div>
-            <div className="back-icon" onClick={goToPrev}>
-              <FaArrowLeft className="icon" />
-              Previous
-            </div>
+          <div className="back-icon" onClick={goToPrev}>
+            <FaArrowLeft className="icon" />
+            Previous
           </div>
         </div>
       </div>
