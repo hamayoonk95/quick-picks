@@ -57,7 +57,7 @@ const Roulette = () => {
     setValues("");
   };
   return (
-    <div className="roulette-container">
+    <div className="roulette-container" onClick={closeDropdown}>
       <div className="wheel">
         <RouletteWheel
           mustSpin={mustSpin}

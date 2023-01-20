@@ -3,7 +3,6 @@ import { Movie, StreamingPlatformIcon } from "../../components";
 import "./MoviePage.css";
 import { useNavigate, useParams } from "react-router-dom";
 import getAvailability from "../../api/getAvailability";
-import netflix from "../../assets/netflix.png"
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -20,7 +19,7 @@ const MoviePage = () => {
     fetchMovie();
   }, [id]);
 
-  // useEffect(() => {
+ // useEffect(() => {
   //   console.log(movie);
   //   const fetchData = async () => {
   //     if (movie) {

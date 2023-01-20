@@ -5,23 +5,12 @@
 }
 
 .wheel {
-    order: -1;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 50vh;
-    z-index: -1;
-}
-
-.roulette-form {
-    width: 15rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    bottom: 3rem;
     z-index: -1;
 }
 
@@ -42,6 +31,16 @@
     cursor: pointer;
     transform: scale(1.05);
     color: var(--secondary-color);
+}
+
+.roulette-form {
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 3rem;
+    z-index: -1;
 }
 
 .roulette-input {
