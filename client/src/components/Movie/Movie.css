@@ -36,6 +36,15 @@
   margin: 1.2rem 3rem 1.5rem 0;
 }
 
+.m-title {
+  flex: 70%;
+}
+
+.m-rating {
+  flex: 15%;
+  text-align: end;
+}
+
 .m-description {
   margin-top: 1rem;
   font-size: 1.2rem;
