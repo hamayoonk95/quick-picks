@@ -28,6 +28,14 @@ const Roulette = () => {
     setMustSpin(true);
   };
 
+  const handleReset = () => {
+    if (mustSpin) {
+      alert("Please wait for the wheel to stop spinning before resetting.");
+    } else {
+      setData([]);
+    }
+  }
+
   const onChange = async (e) => {
     setIsDropdownOpen(true);
     setValues(e.target.value);
@@ -53,11 +61,11 @@ const Roulette = () => {
 
   const addToRoulette = async (e, movie) => {
     e.preventDefault();
-    setData([...data, { option: movie.title.substring(0, 20), id: movie.id }]);
+    setData([...data, { option: movie.title.split(" ").slice(0,4).join(" "), id: movie.id }]);
     setValues("");
   };
   return (
-    <div className="roulette-container" onClick={closeDropdown}>
+    <div className="roulette-container">
       <div className="wheel">
         <RouletteWheel
           mustSpin={mustSpin}
@@ -70,26 +78,34 @@ const Roulette = () => {
           }}
         />
       </div>
-      <div>
-        <button className="spin-btn" onClick={handleSpinClick}>
-          SPIN
-        </button>
-      </div>
+      
+      <div className="form-movies">
       <form className="roulette-form" onSubmit={addToRoulette}>
         <label>Insert Movie</label>
         <input
           className="roulette-input"
+          title="movie"
           type="text"
+          placeholder="Insert Movie name"
           value={values}
           onChange={onChange}
         />
       </form>
+      <div className="btns">
+        <button className="spin-btn" onClick={handleSpinClick}>
+          SPIN
+        </button>
+        <button className="reset-btn" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
       <RouletteSearch
         movies={movies}
         addToRoulette={addToRoulette}
         isDropdownOpen={isDropdownOpen}
         closeDropdown={closeDropdown}
       />
+      </div>
     </div>
   );
 };

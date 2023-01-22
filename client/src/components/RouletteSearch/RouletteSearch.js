@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./RouletteSearch.css";
 
 const RouletteSearch = ({ movies, addToRoulette, isDropdownOpen ,closeDropdown }) => {

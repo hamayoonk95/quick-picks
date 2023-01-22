@@ -8,9 +8,8 @@ const RouletteWheel = (props) => {
       mustStartSpinning={props.mustSpin}
       prizeNumber={props.prizeNumber}
       data={props.data}
-      // backgroundColors={['black','cyan','red']}
       textColors={["#fff"]}
-      fontSize={15}
+      fontSize={12}
       backgroundColors={[
         "#F22B35",
         "#F99533",
@@ -23,7 +22,7 @@ const RouletteWheel = (props) => {
       innerRadius={10}
       innerBorderWidth={0}
       outerBorderWidth={0}
-      textDistance={50}
+      textDistance={55}
       onStopSpinning={props.onStopSpinning}
     />
   );
