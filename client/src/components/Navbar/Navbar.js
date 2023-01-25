@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./Navbar.css";
 import Searchbar from "../Searchbar/Searchbar";
-import logo from '../../assets/logo.png';
+import logo from "../../assets/logo.png";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
   const [isActive, setisActive] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [pathname, setPathname] = useState(location.pathname);
+  console.log(pathname);
+  useEffect(() => {
+    setPathname(location.pathname);
+}, [location]);
 
   const handler = () => {
     setToggle((current) => !current);
@@ -19,7 +26,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo-container">
-        <a href="/"><img className='logo' src={logo} alt='logo'/></a>
+        <a href="/">
+          <img className="logo" src={logo} alt="logo" />
+        </a>
       </div>
       <div className="navigation">
         <Searchbar />
@@ -27,8 +36,11 @@ const Navbar = () => {
         <ul className="nav-links">
           {["filter search", "roulette", "account"].map((item) => {
             return (
-              <li className="link" key={`${item}`}>
-                <Link to={`/${item.replace(" ", "-")}`}>{item === 'account' ? <FaUser /> : item}</Link>
+              <li className={`link ${pathname === `/${item.replace(" ", "-")}` ? "active" : ""}`} 
+                key={`${item}`}>
+                <Link to={`/${item.replace(" ", "-")}`}>
+                  {item === "account" ? <FaUser /> : item}
+                </Link>
               </li>
             );
           })}
@@ -59,7 +71,7 @@ const Navbar = () => {
           <div className="nav-menu flex-center">
             <ul>
               {["filter search", "roulette", "account"].map((item) => (
-                <li className={`nav-menu-links`} key={`${item}`}>
+                <li className={`nav-menu-links ${pathname === `/${item.replace(" ", "-")}` ? "active" : ""}`} key={`${item}`}>
                   <Link onClick={handler} to={`/${item.replace(" ", "-")}`}>
                     {item}
                   </Link>

@@ -28,6 +28,10 @@
   transition: transform 0.2s;
 }
 
+.active a {
+  color: var(--secondary-color);
+}
+
 .navbar a:hover {
   color: var(--secondary-color);
   transform: scale(1.2);
