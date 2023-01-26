@@ -19,7 +19,7 @@ const RouletteWheel = (props) => {
         "#9145B7",
       ]}
       perpendicularText={false}
-      innerRadius={10}
+      innerRadius={5}
       innerBorderWidth={0}
       outerBorderWidth={0}
       textDistance={55}
