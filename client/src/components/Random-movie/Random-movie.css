@@ -1,6 +1,6 @@
 .card {
   width: 80%;
-  height: 50vh;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 5px 8px -2px rgba(194, 184, 184, 0.5);
   display: flex;
@@ -35,10 +35,6 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-}
-
-.title {
-  flex: 70%;
 }
 
 .title:hover {
@@ -132,7 +128,7 @@
   .description {
     font-size: 0.9rem;
     width: 100%;
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
   }
 
   .icons {
