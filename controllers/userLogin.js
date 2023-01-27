@@ -1,4 +1,6 @@
 import db from "../models/index.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const Login = async (req, res) => {
   const { username, password } = req.body;
@@ -6,14 +8,41 @@ const Login = async (req, res) => {
     const user = await db.models.User.findOne({
       where: {
         username: username,
-        password: password,
       },
     });
-    // console.log(user);
     if (user) {
-      res.send("Yes");
+      console.log(user.user_id);
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (isMatch) {
+        const userId = user.user_id;
+        const username = user.username;
+        const accessToken = jwt.sign(
+          { userId, username },
+          process.env.ACCESS_TOKEN_SECRET,
+          {
+            expiresIn: "15s",
+          }
+        );
+        const refreshToken = jwt.sign(
+          { userId, username },
+          process.env.REFRESH_TOKEN_SECRET,
+          {
+            expiresIn: "1d",
+          }
+        );
+        await db.models.User.update({refresh_token: refreshToken},{
+          where:{
+              user_id: userId
+          }
+      });
+        res.cookie("accessToken", accessToken, {
+          httpOnly: true,
+          maxAge: 24 * 60 * 60 * 1000
+        })
+        res.json({ accessToken });
+      }
     } else {
-      res.status(401).send("Invalid Credentials");
+      res.status(400).json("Wrong Credentials");
     }
   } catch (error) {
     console.log(error);
@@ -21,4 +50,37 @@ const Login = async (req, res) => {
   }
 };
 
-export { Login };
+const Register = async (req, res) => {
+  const { firstName, lastName, username, email, password } = req.body;
+  const salt = await bcrypt.genSalt();
+  const hashedPassword = await bcrypt.hash(password, salt);
+  try {
+    await db.models.User.create({
+      first_name: firstName,
+      last_name: lastName,
+      username: username,
+      email: email,
+      password: hashedPassword,
+    });
+    res.json({ msg: "Registration Successful" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUser = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1]; // extract token from headers
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // decode token
+    const user = await db.models.User.findOne({ where: { user_id: decoded.userId } }); // find user in users table
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    res.json(user); // send user data
+  } catch (err) {
+    console.log(err);
+    res.status(401).send("Unauthorized");
+  }
+}
+
+export { Login, Register, getUser };

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const navigate = useNavigate();
+const Login = ({onLogin}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,19 +14,12 @@ const Login = () => {
         password: password,
       });
       if(response.statusText == 'OK') {
-        navigate(`/movie/${1}`)
+        localStorage.setItem('token', response.data.accessToken);
+        onLogin();
       }
     } catch (err) {
       console.log(err);
     }
-
-    // const data = await response.json();
-
-    // if (response.ok) {
-    //   console.log(data);
-    // } else {
-    //   console.log(data.error);
-    // }
   };
 
   return (
@@ -46,7 +37,7 @@ const Login = () => {
       />
       <label>Password</label>
       <input
-        type="text"
+        type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
