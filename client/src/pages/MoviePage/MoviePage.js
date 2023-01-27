@@ -14,7 +14,7 @@ const MoviePage = () => {
     const fetchMovie = async () => {
       const response = await fetch(`/movie/${id}`);
       const result = await response.json();
-      setMovie(result[0]);
+      setMovie(result);
     };
     fetchMovie();
   }, [id]);

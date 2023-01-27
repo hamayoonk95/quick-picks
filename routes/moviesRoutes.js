@@ -1,4 +1,6 @@
 import express from 'express';
+import db from '../models/index.js';
+
 import {
   getRandomMovie,
   getPopularMovie,
@@ -9,6 +11,10 @@ import {
 } from "../db/getMovies.js";
 
 const router = express.Router();
+
+(async () => {
+  await db.sequelize.sync();
+})();
 
 router.route('/get-random-movie').get(getRandomMovie);
 router.route('/get-popular-movies').get(getPopularMovie);

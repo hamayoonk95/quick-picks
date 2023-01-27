@@ -17,7 +17,7 @@ const FilterSearch = () => {
       `/filter-movies?mood=${mood}&timeOfDay=${timeOfDay}&ratings=${ratings}&occassion=${occassion}&releaseDate=${releaseDate}`
     );
     const movie = await response.json();
-    id = movie[0].id;
+    id = movie.id;
   };
 
   const navigate = useNavigate();

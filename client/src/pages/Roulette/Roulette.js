@@ -50,7 +50,6 @@ const Roulette = () => {
         try {
           const response = await fetch(`/rouletteSearch?query=${values}`);
           const movies = await response.json();
-          console.log(movies);
           setMovies(movies);
         } catch (err) {
           console.log(err);

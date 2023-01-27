@@ -1,18 +1,21 @@
-import config from "./config/config.js";
-import express from 'express';
+import dbConfig from "./config/dbConfig.js";
+import express, { urlencoded } from "express";
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
+import movieRouter from "./routes/moviesRoutes.js";
+// import userRouter from "./routes/userLoginRoutes.js";
 
 const app = express();
 
-import movieRouter from './routes/moviesRoutes.js';
+app.use(express.urlencoded({ extended: false }));
+
 
 app.use(movieRouter);
+// app.use(userRouter);
 
 app.use(notFound);
 app.use(errorHandler);
 
-
-app.listen(config.port, () => {
-    console.log("Server running on " + config.port);
-})
+app.listen(8000, () => {
+  console.log("Server running on " + 8000);
+});

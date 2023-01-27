@@ -1,10 +1,9 @@
-import express from 'express';
-import { loginUser } from '../db/userLogin';
+// import express from "express";
+// import { loginUser } from "../db/userLogin.js";
 
-const router = express.Router();
+// const router = express.Router();
 
-router.route('/user-login').get(loginUser);
-// router.route('/create-account').get();
+// router.route("/user-login").post(loginUser);
+// // router.route('/create-account').get();
 
-
-export default router;
+// export default router;
