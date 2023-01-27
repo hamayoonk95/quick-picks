@@ -8,13 +8,9 @@ import {
   rouletteSearch,
   filterSearch,
   getMoviebyID
-} from "../db/getMovies.js";
+} from "../controllers/getMovies.js";
 
 const router = express.Router();
-
-(async () => {
-  await db.sequelize.sync();
-})();
 
 router.route('/get-random-movie').get(getRandomMovie);
 router.route('/get-popular-movies').get(getPopularMovie);

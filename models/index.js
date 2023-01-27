@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import dbConfig from "../config/dbConfig.js";
-import Movie from './movies.js';
+import Movie from './Movie.js';
+import User from './User.js'
 
 const sequelize = new Sequelize(
   dbConfig.DATABASE,
@@ -28,5 +29,6 @@ db.sequelize = sequelize;
 db.Op = Sequelize.Op;
 db.models = {};
 db.models.Movie = Movie(sequelize, Sequelize.DataTypes);
+db.models.User = User(sequelize, Sequelize.DataTypes);
 
 export default db;
