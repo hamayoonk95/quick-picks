@@ -10,6 +10,7 @@ function App() {
       <header className="App-header">
         <Navbar />
       </header>
+      <div className="body">
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/filter-search" element={<FilterSearch />}></Route>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/account" element={<Account />}></Route>
         <Route path="/movie/:id" element={<MoviePage />}></Route>
       </Routes>
+      </div>
     </div>
   );
 }

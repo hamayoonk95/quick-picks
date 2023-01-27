@@ -1,4 +1,6 @@
 import express from 'express';
+import db from '../models/index.js';
+
 import {
   getRandomMovie,
   getPopularMovie,
@@ -6,7 +8,7 @@ import {
   rouletteSearch,
   filterSearch,
   getMoviebyID
-} from "../db/getMovies.js";
+} from "../controllers/getMovies.js";
 
 const router = express.Router();
 

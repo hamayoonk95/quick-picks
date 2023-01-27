@@ -3,9 +3,7 @@ import "./Movie.css";
 import noimage from "../../assets/no-image.png";
 
 const Movie = (props) => {
-  const words = props.overview.split(" ");
-  const reducedWords = words.slice(0, 50);
-  const reducedDescription = reducedWords.join(" ");
+  
   return (
     <div className="movie-card">
       <div className="m-poster-container">

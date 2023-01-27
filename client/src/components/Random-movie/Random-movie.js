@@ -14,7 +14,7 @@ const RandomMovie = () => {
     const fetchData = async () => {
       const response = await fetch("/get-random-movie");
       const data = await response.json();
-      setMovie(data[0]);
+      setMovie(data);
     };
     fetchData();
   }, []);
@@ -24,7 +24,7 @@ const RandomMovie = () => {
     const movieData = await response.json();
     setPrevMovies([...prevMovies, movie]);
     setCurrentIdx(currentIdx + 1);
-    setMovie(movieData[0]);
+    setMovie(movieData);
   };
 
   const goToPrev = () => {

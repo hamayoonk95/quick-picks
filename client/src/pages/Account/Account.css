@@ -1,0 +1,15 @@
+.login-page {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-account {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+.new-account:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}

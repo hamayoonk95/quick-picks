@@ -5,3 +5,5 @@ export { default as Movie } from "./Movie/Movie";
 export { default as StreamingPlatformIcon } from "./StreamingPlatformIcon/StreamingPlatformIcon";
 export { default as SearchedMovies } from "./SearchedMovies/SearchedMovies";
 export { default as RouletteSearch } from "./RouletteSearch/RouletteSearch";
+export { default as Login } from "./Login/Login";
+export { default as CreateAccount } from "./CreateAccount/CreateAccount";

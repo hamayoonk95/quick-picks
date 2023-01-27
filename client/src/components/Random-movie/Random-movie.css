@@ -24,8 +24,7 @@
 }
 
 .info-container {
-  flex: 60%;
-  height: 100%;
+  flex: 50%;
   display: flex;
   flex-direction: column;
   margin: 0 1rem;
@@ -35,11 +34,8 @@
 .title-rating {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-weight: 600;
-}
-
-.title {
-  flex: 70%;
 }
 
 .title:hover {
@@ -53,19 +49,19 @@
 }
 
 .description {
-  width: 80%;
+  width: 85%;
   font-size: 1.1rem;
   color: #555;
-  margin: 2.5rem 0 0 0;
+  margin: 2rem 0 0 0;
 }
 
 .icons {
   flex: 20%;
-  height: 100%;
+  padding: 0.5rem;
   color: var(--primary-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .icon {
@@ -97,21 +93,20 @@
 }
 
 
-@media screen and (min-width: 601) and ( max-width: 900px) {
+@media screen and ( min-width: 650px) and (max-width: 900px) {
   .card {
     width: 100%;
   }
 
-  .poster-container {
-    flex: 30%;
-    height: 100%;
+  .description {
+    font-size: 0.9rem;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 649px) {
   .card {
     width: 100%;
-    height: auto;
+    height: 80vh;
     flex-direction: column;
   }
 
@@ -120,7 +115,7 @@
   }
 
   .poster {
-    height: 50vh;
+    height: 38vh;
   }
 
   .info-container {
@@ -134,7 +129,7 @@
   .description {
     font-size: 0.9rem;
     width: 100%;
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
   }
 
   .icons {
