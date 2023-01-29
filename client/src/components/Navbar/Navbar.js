@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isActive, setisActive] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [pathname, setPathname] = useState(location.pathname);
-  console.log(pathname);
+  
   useEffect(() => {
     setPathname(location.pathname);
 }, [location]);
@@ -34,7 +34,7 @@ const Navbar = () => {
         <Searchbar />
 
         <ul className="nav-links">
-          {["filter search", "roulette", "account"].map((item) => {
+          {["filter search", "roulette", "analytics","account"].map((item) => {
             return (
               <li className={`link ${pathname === `/${item.replace(" ", "-")}` ? "active" : ""}`} 
                 key={`${item}`}>
@@ -70,7 +70,7 @@ const Navbar = () => {
         {toggle && (
           <div className="nav-menu flex-center">
             <ul>
-              {["filter search", "roulette", "account"].map((item) => (
+              {["filter search", "roulette", "analytics", "account"].map((item) => (
                 <li className={`nav-menu-links ${pathname === `/${item.replace(" ", "-")}` ? "active" : ""}`} key={`${item}`}>
                   <Link onClick={handler} to={`/${item.replace(" ", "-")}`}>
                     {item}

@@ -14,7 +14,7 @@ const Login = ({onLogin}) => {
         password: password,
       });
       if(response.statusText == 'OK') {
-        localStorage.setItem('token', response.data.accessToken);
+        // localStorage.setItem('accessToken', response.data.accessToken);
         onLogin();
       }
     } catch (err) {

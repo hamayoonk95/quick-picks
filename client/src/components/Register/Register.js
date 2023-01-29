@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./CreateAccount.css";
+import "./Register.css";
 import axios from "axios";
 
-const CreateAccount = (props) => {
+const Register = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [username, setUsername] = useState("");
@@ -74,4 +74,4 @@ const CreateAccount = (props) => {
   );
 };
 
-export default CreateAccount;
+export default Register;

@@ -1,56 +1,31 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./Account.css";
-import { Login, CreateAccount } from "../../components";
+import { Login, Register } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const Account = () => {
-  const [createAccount, setCreateAccount] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [registered, setRegistered] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    setLoggedIn(true);
+    navigate("/analytics");
   };
 
-  const handleCreateAccount = () => {
-    setCreateAccount(!createAccount);
+  const handleRegistered = () => {
+    setRegistered(!registered);
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      axios
-        .get("/account", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setUserData(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      setLoggedIn(false);
-    }
-  }, []);
   return (
     <div className="flex-center login-page">
-      {loggedIn ? (
-        <div>Hello {userData.username}</div>
+      {registered ? (
+        <Register onLogin={handleLogin} toggle={handleRegistered} />
       ) : (
         <>
-          {createAccount ? (
-            <CreateAccount onLogin={handleLogin} toggle={handleCreateAccount} />
-          ) : (
-            <>
-              <Login onLogin={handleLogin} />
-              <div className="new-account" onClick={handleCreateAccount}>
-                Create New Account
-              </div>
-            </>
-          )}
+          <Login onLogin={handleLogin} />
+          <div className="new-account" onClick={handleRegistered}>
+            Create New Account
+          </div>
         </>
       )}
     </div>
