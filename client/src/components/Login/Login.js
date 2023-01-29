@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
-const Login = ({onLogin}) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,12 +16,12 @@ const Login = ({onLogin}) => {
         username: username,
         password: password,
       });
-      if(response.statusText == 'OK') {
-        // localStorage.setItem('accessToken', response.data.accessToken);
-        onLogin();
-      }
+      console.log(response);
+      navigate("/analytics");
     } catch (err) {
-      console.log(err);
+      if(err.response) {
+        setMsg(err.response.data);
+      }
     }
   };
 
@@ -29,6 +32,7 @@ const Login = ({onLogin}) => {
       onSubmit={handleSubmit}
       className="account-form"
     >
+    <p className="error-msg">{msg}</p>
       <label>Username</label>
       <input
         type="text"

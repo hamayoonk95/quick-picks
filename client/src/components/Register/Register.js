@@ -19,7 +19,6 @@ const Register = (props) => {
         email: email,
         password: password,
       });
-      console.log(response);
       if (response.statusText == "OK") {
         props.toggle();
       }
