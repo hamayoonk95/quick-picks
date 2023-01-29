@@ -14,31 +14,34 @@ const Login = async (req, res) => {
       console.log(user.user_id);
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
-        const userId = user.user_id;
+        const user_id = user.user_id;
         const username = user.username;
         const accessToken = jwt.sign(
-          { userId, username },
+          { user_id, username },
           process.env.ACCESS_TOKEN_SECRET,
           {
             expiresIn: "15s",
           }
         );
         const refreshToken = jwt.sign(
-          { userId, username },
+          { user_id, username },
           process.env.REFRESH_TOKEN_SECRET,
           {
             expiresIn: "1d",
           }
         );
-        await db.models.User.update({refresh_token: refreshToken},{
-          where:{
-              user_id: userId
+        await db.models.User.update(
+          { refresh_token: refreshToken },
+          {
+            where: {
+              user_id: user_id,
+            },
           }
-      });
-        res.cookie("accessToken", accessToken, {
+        );
+        res.cookie("refreshToken", refreshToken, {
           httpOnly: true,
-          maxAge: 24 * 60 * 60 * 1000
-        })
+          maxAge: 24 * 60 * 60 * 1000,
+        });
         res.json({ accessToken });
       }
     } else {
@@ -70,17 +73,17 @@ const Register = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const token = req.headers.authorization.split(" ")[1]; // extract token from headers
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // decode token
-    const user = await db.models.User.findOne({ where: { user_id: decoded.userId } }); // find user in users table
+    const user = await db.models.User.findOne({
+      where: { user_id: decoded.userId },
+    }); // find user in users table
     if (!user) {
       return res.status(404).send("User not found");
     }
-    res.json(user); // send user data
+    res.json({ isAuthenticated: true, user: user }); // send user data
   } catch (err) {
     console.log(err);
     res.status(401).send("Unauthorized");
   }
-}
+};
 
 export { Login, Register, getUser };

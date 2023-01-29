@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
+import db from "../models/index.js";
 
 const checkAuth = (req, res, next) => {
     const accessToken = req.headers["authorization"].split(" ")[1];
-    console.log(accessToken);
     if(accessToken) {
-        jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+        jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
             if (err) {
                 return res.status(401).json({ message: "Invalid token" });
             } else {
-                req.loggedIn = true;
+                req.user = await db.models.User.findOne({ where: { user_id: decoded.userId } })
                 next();
             }
             });

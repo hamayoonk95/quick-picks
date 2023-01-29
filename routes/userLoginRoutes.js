@@ -7,8 +7,9 @@ import checkAuth from "../middleware/checkAuth.js";
 const router = express.Router();
 
 router.route("/user-login").post(Login);
-router.route("/token", refreshToken);
+router.route("/token").get(refreshToken);
 router.route("/user-register").post(Register);
-router.route('/account').get(checkAuth, getUser);
+// router.route('/account').get(getUser);
+router.route('/analytics').get(vertifyToken, getUser);
 
 export default router;
