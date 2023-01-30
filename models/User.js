@@ -26,6 +26,9 @@ export default (sequelize, DataTypes) => {
       last_name: {
         type: DataTypes.STRING,
       },
+      refresh_token: {
+        type: DataTypes.TEXT
+      },
       created_at: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,

@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import "./Account.css";
-import { Login, CreateAccount } from "../../components";
+import { Login, Register } from "../../components";
 
 const Account = () => {
-  const [createAccount, setCreateAccount] = useState(false);
+  const [registered, setRegistered] = useState(false);
 
-  const handleCreateAccount = () => {
-    setCreateAccount(!createAccount);
+  const handleRegistered = () => {
+    setRegistered(!registered);
   };
 
   return (
     <div className="flex-center login-page">
-      {createAccount ? (
-        <CreateAccount toggle={handleCreateAccount} />
+      {registered ? (
+        <Register toggle={handleRegistered} />
       ) : (
         <>
           <Login />
-          <div className="new-account" onClick={handleCreateAccount}>
+          <div className="new-account" onClick={handleRegistered}>
             Create New Account
           </div>
         </>

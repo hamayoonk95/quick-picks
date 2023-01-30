@@ -38,6 +38,10 @@
   transform: scale(1.2);
 }
 
+.link:hover {
+  cursor: pointer;
+}
+
 .navigation {
   display: flex;
   align-items: center;
@@ -57,7 +61,7 @@
   display: none;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 850px) {
   .navbar {
     padding: 0.5rem 1rem;
   }

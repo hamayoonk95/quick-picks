@@ -4,9 +4,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,20 +16,14 @@ const Login = () => {
         username: username,
         password: password,
       });
-      if(response.statusText == 'OK') {
-        navigate(`/movie/${1}`)
-      }
+      localStorage.setItem("accessToken", response.data.accessToken);
+      console.log(localStorage);
+      navigate("/analytics");
     } catch (err) {
-      console.log(err);
+      if(err.response) {
+        setMsg(err.response.data);
+      }
     }
-
-    // const data = await response.json();
-
-    // if (response.ok) {
-    //   console.log(data);
-    // } else {
-    //   console.log(data.error);
-    // }
   };
 
   return (
@@ -38,6 +33,7 @@ const Login = () => {
       onSubmit={handleSubmit}
       className="account-form"
     >
+    <p className="error-msg">{msg}</p>
       <label>Username</label>
       <input
         type="text"
@@ -46,7 +42,7 @@ const Login = () => {
       />
       <label>Password</label>
       <input
-        type="text"
+        type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
