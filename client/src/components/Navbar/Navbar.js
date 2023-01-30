@@ -21,8 +21,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setLoggedIn(localStorage.accessToken ? true : false);
-    console.log(localStorage);
-    console.log(loggedIn);
   }, [localStorage.accessToken]);
 
   const handler = () => {

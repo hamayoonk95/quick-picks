@@ -34,3 +34,8 @@
   transform: scale(1.05);
   color: var(--secondary-color);
 }
+
+.error-msg {
+  background-color: red;
+  color: #fff;
+}

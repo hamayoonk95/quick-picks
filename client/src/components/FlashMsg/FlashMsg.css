@@ -1,0 +1,13 @@
+.flash-message {
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    padding: 0.1rem;
+}
+
+.error {
+    color: red; 
+}
+
+.success {
+    color: green;
+}
