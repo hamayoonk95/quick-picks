@@ -5,20 +5,20 @@ import { Home, FilterSearch, Roulette, Account, MoviePage, Analytics } from "./p
 import { Routes, Route } from "react-router-dom";
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(localStorage.accessToken ? true : false);
+  // const [loggedIn, setLoggedIn] = useState(localStorage.accessToken ? true : false);
   
-  function changeLoggedIn(value) {
-    setLoggedIn(value);
-    console.log(loggedIn);
-    if(value === false) {
-      localStorage.clear();
-    }
-  }
+  // function changeLoggedIn(value) {
+  //   setLoggedIn(value);
+  //   console.log(loggedIn);
+  //   if(value === false) {
+  //     localStorage.clear();
+  //   }
+  // }
 
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar loggedIn={loggedIn} setLoggedIn={changeLoggedIn}/>
+        <Navbar />
       </header>
       <div className="body">
       <Routes>
