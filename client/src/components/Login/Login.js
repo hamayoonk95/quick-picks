@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,7 +16,8 @@ const Login = () => {
         username: username,
         password: password,
       });
-      console.log(response);
+      localStorage.setItem("accessToken", response.data.accessToken);
+      console.log(localStorage);
       navigate("/analytics");
     } catch (err) {
       if(err.response) {

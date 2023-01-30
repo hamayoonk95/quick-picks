@@ -7,7 +7,7 @@ const Analytics = () => {
   const [userId, setUserId] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,11 +15,10 @@ const Analytics = () => {
   }, [token]);
 
   useEffect(()=> {
-   
-    if(token != "") {
-        console.log(token);
-        console.log(userId);
-        console.log(expire);
+    if(token !== "") {
+        // console.log(token);
+        // console.log(userId);
+        // console.log(expire);
         getUsers();
     }
   }, [token])
@@ -66,13 +65,15 @@ const Analytics = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUsers(response.data);
+      setUser(response.data.user);
     } catch (err) {
       console.log(err);
     }
   };
 
-  return <div>Hello </div>;
+  return (
+  <div>Hello {user.username}
+  </div>);
 };
 
 export default Analytics;

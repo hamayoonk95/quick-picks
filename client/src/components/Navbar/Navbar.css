@@ -38,6 +38,10 @@
   transform: scale(1.2);
 }
 
+.link:hover {
+  cursor: pointer;
+}
+
 .navigation {
   display: flex;
   align-items: center;

@@ -71,10 +71,30 @@ const Register = async (req, res) => {
   }
 };
 
+const Logout = async(req, res) => {
+  const refreshToken = req.cookies.refreshToken;
+  if(!refreshToken) return res.sendStatus(204);
+  const user = await db.models.User.findAll({
+    where: {
+      refresh_token: refreshToken
+    }
+  });
+  if(!user[0]) return res.sendStatus(204);
+  const user_id = user[0].user_id;
+  await db.models.User.update({refresh_token: null}, {
+    where: {
+      user_id: user_id
+    }
+  });
+  res.clearCookie('refreshToken');
+  return res.status(200);
+}
+
 const getUser = async (req, res) => {
   try {
+    console.log(req.user_id);
     const user = await db.models.User.findOne({
-      where: { user_id: decoded.userId },
+      where: { user_id: req.user_id },
     }); // find user in users table
     if (!user) {
       return res.status(404).send("User not found");
@@ -86,4 +106,4 @@ const getUser = async (req, res) => {
   }
 };
 
-export { Login, Register, getUser };
+export { Login, Register, getUser, Logout };

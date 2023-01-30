@@ -1,27 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./Navbar.css";
 import Searchbar from "../Searchbar/Searchbar";
 import logo from "../../assets/logo.png";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
 
-const Navbar = () => {
+const Navbar = ({loggedIn, setLoggedIn}) => {
   const location = useLocation();
   const [isActive, setisActive] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [pathname, setPathname] = useState(location.pathname);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     setPathname(location.pathname);
-}, [location]);
+  }, [location]);
+
+  useEffect(() => {
+    setLoggedIn(loggedIn)
+  }, [loggedIn])
 
   const handler = () => {
     setToggle((current) => !current);
     setisActive((current) => !current);
   };
 
-  useEffect(() => {}, [toggle]);
+  const logout = async () => {
+    try {
+      await axios.delete("/logout");
+      setLoggedIn(false);
+      navigate("/account")
+      localStorage.clear();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // useEffect(() => {}, [toggle]);
 
   return (
     <nav className="navbar">
@@ -32,15 +48,22 @@ const Navbar = () => {
       </div>
       <div className="navigation">
         <Searchbar />
-
         <ul className="nav-links">
-          {["filter search", "roulette", "analytics","account"].map((item) => {
+          {["filter search", "roulette", "analytics", "account"].map((item) => {
             return (
-              <li className={`link ${pathname === `/${item.replace(" ", "-")}` ? "active" : ""}`} 
-                key={`${item}`}>
-                <Link to={`/${item.replace(" ", "-")}`}>
-                  {item === "account" ? <FaUser /> : item}
-                </Link>
+              <li
+                className={`link ${
+                  pathname === `/${item.replace(" ", "-")}` ? "active" : ""
+                }`}
+                key={`${item}`}
+              >
+                {item === "account" && loggedIn ? (
+                  <a className="link" onClick={logout}>log out</a>
+                ) : (
+                  <Link to={`/${item.replace(" ", "-")}`}>
+                    {item === "account" && !loggedIn ? <FaUser /> : item}
+                  </Link>
+                )}
               </li>
             );
           })}
@@ -70,13 +93,20 @@ const Navbar = () => {
         {toggle && (
           <div className="nav-menu flex-center">
             <ul>
-              {["filter search", "roulette", "analytics", "account"].map((item) => (
-                <li className={`nav-menu-links ${pathname === `/${item.replace(" ", "-")}` ? "active" : ""}`} key={`${item}`}>
-                  <Link onClick={handler} to={`/${item.replace(" ", "-")}`}>
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              {["filter search", "roulette", "analytics", "account"].map(
+                (item) => (
+                  <li
+                    className={`nav-menu-links ${
+                      pathname === `/${item.replace(" ", "-")}` ? "active" : ""
+                    }`}
+                    key={`${item}`}
+                  >
+                    <Link onClick={handler} to={`/${item.replace(" ", "-")}`}>
+                      {item}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </div>
         )}

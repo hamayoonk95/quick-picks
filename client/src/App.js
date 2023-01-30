@@ -1,14 +1,24 @@
 import "./App.css";
-import React from "react";
+import React, {useState} from "react";
 import { Navbar } from "./components";
 import { Home, FilterSearch, Roulette, Account, MoviePage, Analytics } from "./pages";
 import { Routes, Route } from "react-router-dom";
-
 function App() {
+
+  const [loggedIn, setLoggedIn] = useState(localStorage.accessToken ? true : false);
+  
+  function changeLoggedIn(value) {
+    setLoggedIn(value);
+    console.log(loggedIn);
+    if(value === false) {
+      localStorage.clear();
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar />
+        <Navbar loggedIn={loggedIn} setLoggedIn={changeLoggedIn}/>
       </header>
       <div className="body">
       <Routes>
