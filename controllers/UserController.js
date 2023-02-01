@@ -125,7 +125,7 @@ const Logout = async (req, res) => {
   return res.status(200);
 };
 
-const getUser = async (req, res) => {
+const getUserMovies = async (req, res) => {
   try {
     const usersMovies = await db.User.findAll({
       where: {
@@ -135,7 +135,7 @@ const getUser = async (req, res) => {
         {
           model: db.User_movies,
           attributes: [ 'movie_id','user_id'],
-          required: true,
+          required: false,
           include: [
             {
               model: db.Movie,
@@ -143,9 +143,8 @@ const getUser = async (req, res) => {
             }
           ]
         }
-      ]
+      ],
     });
-    
     if (!usersMovies) {
       return res.status(404).send("User not found");
     }
@@ -156,4 +155,4 @@ const getUser = async (req, res) => {
   }
 };
 
-export { Login, Register, getUser, Logout };
+export { Login, Register, getUserMovies, Logout };
