@@ -11,7 +11,7 @@ const Login = async (req, res) => {
     responseSent = true;
   }
   try {
-    const user = await db.models.User.findOne({
+    const user = await db.User.findOne({
       where: {
         username: username,
       },
@@ -37,7 +37,7 @@ const Login = async (req, res) => {
           expiresIn: "1d",
         }
       );
-      await db.models.User.update(
+      await db.User.update(
         { refresh_token: refreshToken },
         {
           where: {
@@ -73,7 +73,7 @@ const Register = async (req, res) => {
       .json({ error: "Password must be at least 6 characters long" });
   }
 
-  const existingUser = await db.models.User.findOne({
+  const existingUser = await db.User.findOne({
     where: {
       [db.Op.or]: [{ username: username }, { email: email }],
     },
@@ -90,7 +90,7 @@ const Register = async (req, res) => {
   try {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
-    await db.models.User.create({
+    await db.User.create({
       first_name: firstName,
       last_name: lastName,
       username: username,
@@ -106,14 +106,14 @@ const Register = async (req, res) => {
 const Logout = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) return res.sendStatus(204);
-  const user = await db.models.User.findAll({
+  const user = await db.User.findAll({
     where: {
       refresh_token: refreshToken,
     },
   });
   if (!user[0]) return res.sendStatus(204);
   const user_id = user[0].user_id;
-  await db.models.User.update(
+  await db.User.update(
     { refresh_token: null },
     {
       where: {
@@ -127,23 +127,29 @@ const Logout = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const user = await db.models.User.findAll({
+    const usersMovies = await db.User.findAll({
+      where: {
+        user_id: 1
+      },
       include: [
         {
-          model: db.models.User_movies,
+          model: db.User_movies,
+          attributes: [ 'movie_id','user_id'],
+          required: true,
           include: [
             {
-              model: db.models.Movie
+              model: db.Movie,
+              required: true,
             }
           ]
         }
       ]
     });
-    if (!user) {
-      console.log(user);
+    
+    if (!usersMovies) {
       return res.status(404).send("User not found");
     }
-    res.json({ user: user });
+    res.json({ username: usersMovies[0].username, movies: usersMovies[0].user_movies });
   } catch (err) {
     console.log(err);
     res.status(401).send("Unauthorized");

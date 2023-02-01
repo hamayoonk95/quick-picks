@@ -47,13 +47,16 @@ export default (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  // Movie.associate = function(models) {
-  //   Movie.belongsToMany(models.User, {
-  //     through: models.User_movies,
-  //     as: 'users',
-  //     foreignKey: 'movie_id'
-  //   });
-  // };
+  // / db.Movie.belongsToMany(db.User, {
+    //   through: db.User_movies
+    // });
+
+  Movie.associate = function(models) {
+    Movie.belongsToMany(models.User, {
+      through: models.User_movies,
+      foreignKey: "id"
+    });
+  };
 
   return Movie;
 }

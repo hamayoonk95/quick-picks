@@ -14,11 +14,11 @@ const Analytics = () => {
     refreshToken();
   }, [token]);
 
-  useEffect(()=> {
-    if(token !== "") {
-        getUsers();
+  useEffect(() => {
+    if (token !== "") {
+      getUsers();
     }
-  }, [token])
+  }, [token]);
 
   const refreshToken = async () => {
     try {
@@ -60,22 +60,23 @@ const Analytics = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data.user[0].user_movies);
-      setUser(response.data.user[0]);
-      setUserMovies(response.data.user[0].user_movies);
+
+      setUser(response.data.username);
+      setUserMovies(response.data.movies);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <>
-  <div>Hello {user.username}
-  </div>
-  {userMovies && userMovies.map(movie => {
-    return <div key={movie.movieId}>{movie.movie.title}</div>;
-  })}
-  </>);
+    <div className="analytics">
+      <div>Hello {user}</div>
+      {userMovies &&
+        userMovies.map((movie) => {
+          return <div key={movie.movie.id}>{movie.movie.title}</div>;
+        })}
+    </div>
+  );
 };
 
 export default Analytics;
