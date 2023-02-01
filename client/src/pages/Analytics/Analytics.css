@@ -5,10 +5,18 @@
 }
 
 .watched-hours {
-    margin-top: 1rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+}
+
+.watched-genres {
+    margin-top: 2rem;
+}
+
+.fav-actors {
+    margin-top: 2rem;
 }

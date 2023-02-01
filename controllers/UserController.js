@@ -129,7 +129,7 @@ const getUserMovies = async (req, res) => {
   try {
     const usersMovies = await db.User.findAll({
       where: {
-        user_id: 1
+        user_id: req.user_id
       },
       include: [
         {

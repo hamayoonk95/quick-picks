@@ -3,7 +3,7 @@ import "./Analytics.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import { WatchedHours } from "../../components";
+import { WatchedHours, WatchedGenres, FavActors } from "../../components";
 
 const Analytics = () => {
   const [token, setToken] = useState("");
@@ -64,11 +64,10 @@ const Analytics = () => {
       });
 
       setUser(response.data.username.toUpperCase());
-      console.log(response.data.movies);
-      if(response.data.movies != null || response.data.movies || undefined) {
+      // console.log(response.data.movies);
+      if (response.data.movies !== null || response.data.movies !== undefined) {
         setUserMovies(response.data.movies);
       }
-      
     } catch (err) {
       console.log(err);
     }
@@ -77,18 +76,21 @@ const Analytics = () => {
   return (
     <div className="analytics">
       <h1 className="user-greet">Hello {user}</h1>
-      {userMovies.length != 0 ?
-      <div className="watched-hours">
-        <WatchedHours movies={userMovies} />
-      </div> : <div className="not-watched"> You havent watched anything yet</div>
-      }
-      
-      
-      
-      {/* {userMovies &&
-        userMovies.map((movie) => {
-          return <div key={movie.movie.id}>{movie.movie.title}</div>;
-        })} */}
+      {userMovies.length !== 0 ? (
+        <>
+          <div className="watched-hours">
+            <WatchedHours movies={userMovies} />
+          </div>
+          <div className="watched-genres">
+            <WatchedGenres movies={userMovies}/>
+          </div>
+          <div className="fav-actors">
+            <FavActors movies={userMovies}/>
+          </div>
+        </>
+      ) : (
+        <div className="not-watched"> You havent watched anything yet</div>
+      )}
     </div>
   );
 };
