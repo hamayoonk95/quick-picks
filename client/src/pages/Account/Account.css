@@ -1,7 +1,11 @@
-.login-page {
-    height: 70vh;
+.account-page {
     display: flex;
     flex-direction: column;
+}
+
+.flashMsg {
+    position: absolute;
+    top: 6rem;
 }
 
 .new-account {

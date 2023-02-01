@@ -55,6 +55,8 @@ const Login = ({ setMsg, responseType, setResponseType }) => {
   };
 
   return (
+    <div className="login-page">
+    <h2 className="page-title">Login</h2>
     <form
       method="POST"
       action=""
@@ -77,6 +79,7 @@ const Login = ({ setMsg, responseType, setResponseType }) => {
       {passwordError && <FlashMsg msg={passwordError} type={responseType} />}
       <button className="account-btn">Login</button>
     </form>
+    </div>
   );
 };
 

@@ -47,5 +47,13 @@ export default (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  // Movie.associate = function(models) {
+  //   Movie.belongsToMany(models.User, {
+  //     through: models.User_movies,
+  //     as: 'users',
+  //     foreignKey: 'movie_id'
+  //   });
+  // };
+
   return Movie;
 }

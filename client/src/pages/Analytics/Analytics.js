@@ -4,10 +4,10 @@ import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 const Analytics = () => {
-  const [userId, setUserId] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
   const [user, setUser] = useState([]);
+  const [userMovies, setUserMovies] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,9 +16,6 @@ const Analytics = () => {
 
   useEffect(()=> {
     if(token !== "") {
-        // console.log(token);
-        // console.log(userId);
-        // console.log(expire);
         getUsers();
     }
   }, [token])
@@ -28,7 +25,6 @@ const Analytics = () => {
       const response = await axios.get("/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
-      setUserId(decoded.user_id);
       setExpire(decoded.exp);
     } catch (error) {
       console.log(error);
@@ -48,7 +44,6 @@ const Analytics = () => {
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
         setToken(response.data.accessToken);
         const decoded = jwt_decode(response.data.accessToken);
-        setUserId(decoded.userId);
         setExpire(decoded.exp);
       }
       return config;
@@ -65,15 +60,22 @@ const Analytics = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setUser(response.data.user);
+      console.log(response.data.user[0].user_movies);
+      setUser(response.data.user[0]);
+      setUserMovies(response.data.user[0].user_movies);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
+    <>
   <div>Hello {user.username}
-  </div>);
+  </div>
+  {userMovies && userMovies.map(movie => {
+    return <div key={movie.movieId}>{movie.movie.title}</div>;
+  })}
+  </>);
 };
 
 export default Analytics;

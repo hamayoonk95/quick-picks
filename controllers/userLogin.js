@@ -127,14 +127,23 @@ const Logout = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    console.log(req.user_id);
-    const user = await db.models.User.findOne({
-      where: { user_id: req.user_id },
-    }); // find user in users table
+    const user = await db.models.User.findAll({
+      include: [
+        {
+          model: db.models.User_movies,
+          include: [
+            {
+              model: db.models.Movie
+            }
+          ]
+        }
+      ]
+    });
     if (!user) {
+      console.log(user);
       return res.status(404).send("User not found");
     }
-    res.json({ isAuthenticated: true, user: user }); // send user data
+    res.json({ user: user });
   } catch (err) {
     console.log(err);
     res.status(401).send("Unauthorized");

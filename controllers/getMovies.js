@@ -111,14 +111,6 @@ const getMoviebyID = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  // const query = `SELECT * FROM movies WHERE id = ?`;
-  // connection.query(query, [`${req.params.id}`], (err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     res.send(result);
-  //   }
-  // });
 };
 
 export {

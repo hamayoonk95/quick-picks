@@ -93,7 +93,8 @@ const Register = ({ toggle, setMsg, responseType, setResponseType }) => {
   };
 
   return (
-    <>
+    <div className="register-page">
+    <h2 className="page-title">Register</h2>
       <form method="POST" onSubmit={handleSubmit} className="account-form">
         <label>First Name</label>
         <input
@@ -143,7 +144,7 @@ const Register = ({ toggle, setMsg, responseType, setResponseType }) => {
       <button className="c-account-btn" onClick={toggle}>
         Back to Login
       </button>
-    </>
+    </div>
   );
 };
 

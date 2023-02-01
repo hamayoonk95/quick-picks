@@ -12,8 +12,10 @@ const Account = () => {
   };
 
   return (
-    <div className="flex-center login-page">
+    <div className="flex-center account-page">
+    <div className="flashMsg">
       {msg && <FlashMsg msg={msg} type={responseType} />}
+      </div>
       {registered ? (
         <Register
           toggle={handleRegistered}
