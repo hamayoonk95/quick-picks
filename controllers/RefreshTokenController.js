@@ -5,7 +5,7 @@ export const refreshToken = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) return res.sendStatus(401);
-    const user = await db.models.User.findAll({
+    const user = await db.User.findAll({
       where: {
         refresh_token: refreshToken,
       },

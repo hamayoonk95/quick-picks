@@ -27,7 +27,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       refresh_token: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -40,6 +40,17 @@ export default (sequelize, DataTypes) => {
       updatedAt: false,
     }
   );
+
+  User.associate = function (models) {
+    User.hasMany(models.User_movies, {
+      foreignKey: "user_id",
+      onDelete: "CASCADE",
+    });
+    // User.belongsToMany(models.Movie, {
+    //   through: models.User_movies,
+    //   foreignKey: "user_id"
+    // });
+  };
 
   return User;
 };

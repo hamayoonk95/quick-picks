@@ -7,7 +7,7 @@ import {
   rouletteSearch,
   filterSearch,
   getMoviebyID
-} from "../controllers/getMovies.js";
+} from "../controllers/MoviesController.js";
 
 const router = express.Router();
 

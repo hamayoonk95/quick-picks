@@ -1,12 +1,12 @@
-import genreMapping from "./genreMapping.js";
+import genreMapping from "../middleware/genreMapping.js";
 import db from "../models/index.js";
 
 const getRandomMovie = async (req, res) => {
   try {
-    const count = await db.models.Movie.count({
+    const count = await db.Movie.count({
       where: { poster_path: { [db.Op.ne]: null } },
     });
-    const randomMovie = await db.models.Movie.findOne({
+    const randomMovie = await db.Movie.findOne({
       offset: Math.floor(Math.random() * count),
       limit: 1,
     });
@@ -18,7 +18,7 @@ const getRandomMovie = async (req, res) => {
 
 const getPopularMovie = async (req, res) => {
   try {
-    const popularMovies = await db.models.Movie.findAll({
+    const popularMovies = await db.Movie.findAll({
       where: { popularity: { [db.Op.ne]: null } },
       order: [["popularity", "DESC"]],
       limit: 20,
@@ -33,7 +33,7 @@ const searchMovie = async (req, res) => {
   if (req.query.query) {
     try {
       const input = req.query.query;
-      const searchedMovies = await db.models.Movie.findAll({
+      const searchedMovies = await db.Movie.findAll({
         where: {
           [db.Op.or]: [
             { title: { [db.Op.like]: `%${input}%` } },
@@ -56,7 +56,7 @@ const rouletteSearch = async (req, res) => {
   if (req.query.query) {
     const input = req.query.query;
     try {
-      const rouletteSearchMovies = await db.models.Movie.findAll({
+      const rouletteSearchMovies = await db.Movie.findAll({
         where: {
           [db.Op.or]: [
             { title: { [db.Op.like]: `%${input}%` } },
@@ -78,7 +78,7 @@ const filterSearch = async (req, res) => {
   const { mood, timeOfDay, ratings, occassion, releaseDate } = req.query;
   const genre = genreMapping[mood][timeOfDay][occassion];
   try {
-    const filterMovie = await db.models.Movie.findOne({
+    const filterMovie = await db.Movie.findOne({
       where: {
         genres: {
           [db.Op.like]: `%${genre[0]}%`,
@@ -104,21 +104,13 @@ const filterSearch = async (req, res) => {
 
 const getMoviebyID = async (req, res) => {
   try {
-    const movie = await db.models.Movie.findOne({
+    const movie = await db.Movie.findOne({
       where: { id : req.params.id}
     })
     res.send(movie);
   } catch (err) {
     console.log(err);
   }
-  // const query = `SELECT * FROM movies WHERE id = ?`;
-  // connection.query(query, [`${req.params.id}`], (err, result) => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     res.send(result);
-  //   }
-  // });
 };
 
 export {
