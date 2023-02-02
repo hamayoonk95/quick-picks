@@ -21,7 +21,7 @@ const FavActors = ({ movies }) => {
   }));
   const top5Actors = actorData.sort((a, b) => b.value - a.value).slice(0, 5);
 
-  console.log(top5Actors);
+  // console.log(top5Actors);
   return (
     <div className="bar-container">
       <div className="bar-title">Favourite Actors</div>

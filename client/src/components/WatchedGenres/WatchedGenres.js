@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./WatchedGenres.css";
 import { PieChart, Pie, Tooltip } from "recharts";
 
 const WatchedGenres = ({ movies }) => {
+
+  const [pieChartWidth, setPieChartWidth] = useState(300);
+  const [PieChartRadius, setPieChartRadius] = useState(100);
+  useEffect(() => {
+    const handleResize = () => {
+      setPieChartWidth(window.innerWidth < 500 ? 300 : 1000);
+      setPieChartRadius(window.innerWidth < 500 ? 80 : 140);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
   const genreCount = {};
   movies.forEach((movie) => {
     const genres = movie.movie.genres.split("-");
@@ -25,12 +37,12 @@ const WatchedGenres = ({ movies }) => {
     <div className="pie-container">
       <div className="pie-title">Most watched Genres</div>
       <div className="pie-genre">
-        <PieChart width={500} height={300}>
+        <PieChart width={pieChartWidth} height={400}>
         <Pie
         data={top5Genres}
         cx="50%"
         cy="50%"
-        outerRadius={100}
+        outerRadius={PieChartRadius}
         fill="#f9ab53"
         dataKey="value"
         label={({
@@ -49,9 +61,9 @@ const WatchedGenres = ({ movies }) => {
 
           return (
             <text
+              className="pie-text"
               x={x}
               y={y}
-              style={{fontSize: "0.5rem"}}
               fill="#0e3a76"
               textAnchor={x > cx ? "start" : "end"}
               dominantBaseline="central"

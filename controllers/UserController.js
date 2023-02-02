@@ -129,30 +129,62 @@ const getUserMovies = async (req, res) => {
   try {
     const usersMovies = await db.User.findAll({
       where: {
-        user_id: req.user_id
+        user_id: req.user_id,
       },
       include: [
         {
           model: db.User_movies,
-          attributes: [ 'movie_id','user_id'],
+          attributes: ["movie_id", "user_id"],
           required: false,
           include: [
             {
               model: db.Movie,
               required: true,
-            }
-          ]
-        }
+            },
+          ],
+        },
       ],
     });
     if (!usersMovies) {
       return res.status(404).send("User not found");
     }
-    res.json({ username: usersMovies[0].username, movies: usersMovies[0].user_movies });
+    res.json({
+      username: usersMovies[0].username,
+      movies: usersMovies[0].user_movies,
+    });
   } catch (err) {
     console.log(err);
     res.status(401).send("Unauthorized");
   }
 };
 
-export { Login, Register, getUserMovies, Logout };
+const watchMovie = async (req, res) => {
+  try {
+    const [userMovie, created] = await db.User_movies.findOrCreate({
+      where: {
+        movie_id: req.body.movie_id,
+        user_id: req.user_id,
+      },
+      defaults: {
+        movie_id: req.body.movie_id,
+        user_id: req.user_id,
+      },
+    });
+
+    if (!created) {
+      return res.status(409).json({
+        error: "Movie already watched",
+      });
+    }
+    return res.status(201).json({
+      success: "Movie added to watchlist",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal Server Error",
+      error,
+    });
+  }
+};
+
+export { Login, Register, getUserMovies, Logout, watchMovie };
