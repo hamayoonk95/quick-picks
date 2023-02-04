@@ -9,6 +9,20 @@
     font-size: 0.7rem;
 }
 
+.recharts-pie-sector {
+    transform-origin: center;
+    animation: spin 1s linear forwards;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
 @media  screen and (max-width: 500px) {
     .pie-text {
         font-size: 0.35rem;

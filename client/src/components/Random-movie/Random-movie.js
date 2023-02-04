@@ -48,7 +48,14 @@ const RandomMovie = () => {
     const reducedWords = words.slice(0, 30);
     const reducedDescription = reducedWords.join(" ");
     return (
-      <div className="card flex-center">
+      <div className="random-movie-container flex-center">
+      <div className="icons">
+        <div className="back-icon" onClick={goToPrev}>
+          <FaArrowLeft className="icon" />
+          Previous
+        </div>
+        </div>
+        <div className="card">
         <div
           onClick={() => navigate(`/movie/${id}`)}
           className="poster-container"
@@ -64,27 +71,24 @@ const RandomMovie = () => {
           )}
         </div>
         <div className="info-container">
-            <div className="title-rating">
-              <h2 onClick={() => navigate(`/movie/${id}`)} className="title">
-                {title.split(" ").slice(0,5).join(" ")} ({release_date})
-              </h2>
-              {vote_average > 0 ? (
-                <div className="rating">{vote_average}</div>
-              ) : null}
-            </div>
-            <div className="genre">{genres.split("-").join(", ")}</div>
-            <p className="description">
-              {reducedDescription} {words.length > 30 && "..."}
-            </p>
+          <div className="title-rating">
+            <h2 onClick={() => navigate(`/movie/${id}`)} className="title">
+              {title.split(" ").slice(0, 5).join(" ")} ({release_date})
+            </h2>
+            {vote_average > 0 ? (
+              <div className="rating">{vote_average}</div>
+            ) : null}
+          </div>
+          <div className="genre">{genres.split("-").join(", ")}</div>
+          <p className="description">
+            {reducedDescription} {words.length > 30 && "..."}
+          </p>
+        </div>
         </div>
         <div className="icons">
           <div className="random-icon" onClick={getRandom}>
             <FaRandom className="icon" />
             Get Movie
-          </div>
-          <div className="back-icon" onClick={goToPrev}>
-            <FaArrowLeft className="icon" />
-            Previous
           </div>
         </div>
       </div>

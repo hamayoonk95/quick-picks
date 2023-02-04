@@ -27,14 +27,10 @@ const MoviePage = () => {
   }, [id]);
 
   useEffect(() => {
-    refreshToken();
+    if(localStorage.accessToken)
+      refreshToken();
   }, [token]);
 
-  useEffect(() => {
-    if (token !== "") {
-      // getUsers();
-    }
-  }, [token]);
 
   // useEffect(() => {
   //   console.log(movie);
@@ -67,7 +63,6 @@ const MoviePage = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.success) {
         setResMsg("Movie added to watch history");
         setResponseType("success");
@@ -89,7 +84,9 @@ const MoviePage = () => {
 
   return (
     <div className="container">
+      <div className="flash-msg">
       {resMsg && <FlashMsg msg={resMsg} type={responseType} />}
+      </div>
       {movie ? (
         <div className="flex-center movie-container">
           <Movie {...movie} />
