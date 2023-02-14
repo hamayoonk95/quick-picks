@@ -38,7 +38,7 @@ const FavActors = ({ movies }) => {
             data={top5Actors}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" style={{ fontSize: "0.5rem" }} />
+            <XAxis dataKey="name" style={{ fontSize: "0.55rem" }} />
             {/* <YAxis /> */}
             <Tooltip />
             <Bar className="bar" dataKey="value"  />
