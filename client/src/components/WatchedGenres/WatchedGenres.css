@@ -5,27 +5,19 @@
     margin-top: 3rem;
 }
 
-.pie-text {
-    font-size: 0.7rem;
+.pie-genre {
+  width: 100%;
 }
 
-.recharts-pie-sector {
-    transform-origin: center;
-    animation: spin 1s linear forwards;
-  }
-  
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+
+.pie-text {
+    font-size: 1rem;
+}
+
 
 @media  screen and (max-width: 500px) {
     .pie-text {
-        font-size: 0.35rem;
+        font-size: 0.7rem;
     }
 }
 

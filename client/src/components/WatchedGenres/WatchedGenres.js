@@ -1,20 +1,9 @@
 import React, {useState, useEffect} from "react";
 import "./WatchedGenres.css";
-import { PieChart, Pie, Tooltip } from "recharts";
+import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
 
 const WatchedGenres = ({ movies }) => {
 
-  const [pieChartWidth, setPieChartWidth] = useState(300);
-  const [PieChartRadius, setPieChartRadius] = useState(100);
-  useEffect(() => {
-    const handleResize = () => {
-      setPieChartWidth(window.innerWidth < 500 ? 300 : 1000);
-      setPieChartRadius(window.innerWidth < 500 ? 80 : 140);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  
   const genreCount = {};
   movies.forEach((movie) => {
     const genres = movie.movie.genres.split("-");
@@ -37,12 +26,13 @@ const WatchedGenres = ({ movies }) => {
     <div className="pie-container">
       <div className="pie-title">Most watched Genres</div>
       <div className="pie-genre">
-        <PieChart width={pieChartWidth} height={400}>
+      <ResponsiveContainer  height={400}>
+        <PieChart >
         <Pie
         data={top5Genres}
         cx="50%"
         cy="50%"
-        outerRadius={PieChartRadius}
+        outerRadius={100}
         fill="#f9ab53"
         dataKey="value"
         label={({
@@ -75,6 +65,7 @@ const WatchedGenres = ({ movies }) => {
       />
           <Tooltip />
         </PieChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

@@ -1,6 +1,14 @@
 import React from "react";
 import "./FavActors.css";
-import { BarChart, Bar, CartesianGrid, XAxis, Tooltip,YAxis, Legend } from "recharts";
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  Tooltip,
+  YAxis,
+  ResponsiveContainer,
+} from "recharts";
 
 const FavActors = ({ movies }) => {
   const actorCount = {};
@@ -21,23 +29,21 @@ const FavActors = ({ movies }) => {
   }));
   const top5Actors = actorData.sort((a, b) => b.value - a.value).slice(0, 5);
 
-  // console.log(top5Actors);
   return (
     <div className="bar-container">
       <div className="bar-title">Favourite Actors</div>
-      <div className="bar-actors">
-        <BarChart
-          width={400}
-          height={400}
-          data={top5Actors}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" style={{fontSize: "0.5rem"}} />
-          <YAxis />
-          <Tooltip />
-          {/* <Legend /> */}
-        <Bar dataKey="value" fill="#8884d8" />
-        </BarChart>
+      <div className="bargraph-actors">
+        <ResponsiveContainer width={400} height={400}>
+          <BarChart
+            data={top5Actors}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" style={{ fontSize: "0.5rem" }} />
+            {/* <YAxis /> */}
+            <Tooltip />
+            <Bar className="bar" dataKey="value"  />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

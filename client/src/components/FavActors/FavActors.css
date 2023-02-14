@@ -5,6 +5,11 @@
     margin-top: 3rem;
 }
 
+
 .bar-title {
     margin-bottom: 1rem;
 }
+
+.bar {
+    fill: var(--primary-color);
+  }

@@ -27,10 +27,11 @@ const MoviePage = () => {
   }, [id]);
 
   useEffect(() => {
-    if(localStorage.accessToken)
+    console.log(localStorage.accessToken);
+    if (localStorage.accessToken) {
       refreshToken();
+    }
   }, [token]);
-
 
   // useEffect(() => {
   //   console.log(movie);
@@ -85,7 +86,7 @@ const MoviePage = () => {
   return (
     <div className="container">
       <div className="flash-msg">
-      {resMsg && <FlashMsg msg={resMsg} type={responseType} />}
+        {resMsg && <FlashMsg msg={resMsg} type={responseType} />}
       </div>
       {movie ? (
         <div className="flex-center movie-container">
