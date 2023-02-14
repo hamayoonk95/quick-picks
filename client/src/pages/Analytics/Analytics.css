@@ -1,0 +1,24 @@
+.analytics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.watched-hours {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.watched-genres {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.fav-actors {
+    margin-top: 2rem;
+}

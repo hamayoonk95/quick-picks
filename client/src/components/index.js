@@ -8,3 +8,6 @@ export { default as RouletteSearch } from "./RouletteSearch/RouletteSearch";
 export { default as Login } from "./Login/Login";
 export { default as Register } from "./Register/Register";
 export { default as FlashMsg } from "./FlashMsg/FlashMsg";
+export { default as WatchedHours } from "./WatchedHours/WatchedHours";
+export { default as WatchedGenres } from "./WatchedGenres/WatchedGenres";
+export { default as FavActors } from "./FavActors/FavActors";

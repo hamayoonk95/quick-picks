@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Movie, StreamingPlatformIcon } from "../../components";
 import "./MoviePage.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRefreshToken, useAxiosJWT } from "../../utils/useAxiosJWT";
 import getAvailability from "../../api/getAvailability";
+import { FlashMsg } from "../../components";
 
 const MoviePage = () => {
+  const navigate = useNavigate();
+  const [token, setToken, expire, setExpire, refreshToken] = useRefreshToken();
+  const axiosJWT = useAxiosJWT(token, setToken, expire, setExpire);
+  const [resMsg, setResMsg] = useState("");
+  const [responseType, setResponseType] = useState("");
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [streamingService, setStreamingService] = useState(null);
@@ -19,7 +26,14 @@ const MoviePage = () => {
     fetchMovie();
   }, [id]);
 
- // useEffect(() => {
+  useEffect(() => {
+    console.log(localStorage.accessToken);
+    if (localStorage.accessToken) {
+      refreshToken();
+    }
+  }, [token]);
+
+  // useEffect(() => {
   //   console.log(movie);
   //   const fetchData = async () => {
   //     if (movie) {
@@ -36,13 +50,44 @@ const MoviePage = () => {
   //   }
   // }, [movie, isLoading]);
 
-  const navigate = useNavigate();
+  const handleWatch = async () => {
+    try {
+      console.log(token);
+      const response = await axiosJWT.post(
+        "/watch-movie",
+        {
+          movie_id: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.data.success) {
+        setResMsg("Movie added to watch history");
+        setResponseType("success");
+      }
+    } catch (error) {
+      console.log(error.response.status);
+      if (error.response.status === 409) {
+        setResMsg("This movie has already been added to your watch history");
+        setResponseType("error");
+      } else {
+        navigate("/account");
+      }
+    }
+  };
+
   const prevPage = () => {
     navigate(-1);
   };
 
   return (
     <div className="container">
+      <div className="flash-msg">
+        {resMsg && <FlashMsg msg={resMsg} type={responseType} />}
+      </div>
       {movie ? (
         <div className="flex-center movie-container">
           <Movie {...movie} />
@@ -58,12 +103,12 @@ const MoviePage = () => {
               link={service.link}
             />
           ))} */}
-          <StreamingPlatformIcon key={"abc"} src={"netflix"} link={"//"} />
-          <StreamingPlatformIcon key={"aa"} src={"disney_plus"} link={"//"} />
-          <StreamingPlatformIcon key={"aab"} src={"vudu"} link={"//"} />
+        <StreamingPlatformIcon key={"abc"} src={"netflix"} link={"//"} />
+        <StreamingPlatformIcon key={"aa"} src={"disney_plus"} link={"//"} />
+        <StreamingPlatformIcon key={"aab"} src={"vudu"} link={"//"} />
       </div>
       <div className="buttons">
-        <button>Watch</button>
+        <button onClick={handleWatch}>Watch</button>
         <button onClick={prevPage}>Go Back</button>
       </div>
     </div>

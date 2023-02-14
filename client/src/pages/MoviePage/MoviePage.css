@@ -8,6 +8,12 @@
     margin: 1rem;
 }
 
+.flash-msg {
+    text-align: center;
+    position: fixed;
+    top: 12%;
+}
+
 .buttons {
     display: flex;
     flex-direction: column;

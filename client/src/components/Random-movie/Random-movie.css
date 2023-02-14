@@ -1,6 +1,12 @@
+.random-movie-container {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+}
+
 .card {
-  width: 80%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   box-shadow: 0 5px 8px -2px rgba(194, 184, 184, 0.5);
   display: flex;
@@ -94,6 +100,8 @@
 
 
 @media screen and ( min-width: 650px) and (max-width: 900px) {
+  
+
   .card {
     width: 100%;
   }
@@ -104,9 +112,15 @@
 }
 
 @media screen and (max-width: 649px) {
+  .random-movie-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+  }
+
   .card {
+    order: 1;
     width: 100%;
-    height: 80vh;
     flex-direction: column;
   }
 
@@ -115,7 +129,7 @@
   }
 
   .poster {
-    height: 38vh;
+    height: 40vh;
   }
 
   .info-container {
@@ -129,10 +143,10 @@
   .description {
     font-size: 0.9rem;
     width: 100%;
-    margin: 1rem 0 0 0;
   }
 
   .icons {
+    order: 2;
     padding: 0.5rem;
     flex-direction: row;
   }

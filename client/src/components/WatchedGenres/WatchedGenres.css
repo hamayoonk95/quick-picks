@@ -1,0 +1,23 @@
+.pie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.pie-genre {
+  width: 100%;
+}
+
+
+.pie-text {
+    font-size: 1rem;
+}
+
+
+@media  screen and (max-width: 500px) {
+    .pie-text {
+        font-size: 0.7rem;
+    }
+}
+
