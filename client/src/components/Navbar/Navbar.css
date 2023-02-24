@@ -1,3 +1,4 @@
+/* Navbar styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -15,11 +16,13 @@
   z-index: 10;
 }
 
+/* Logo size */
 .logo {
   width: 55px;
   height: 55px;
 }
 
+/* Styles for navbar links */
 .navbar a {
   padding-right: 1.2rem;
   display: block;
@@ -28,30 +31,31 @@
   transition: all 0.2s;
 }
 
+/* Styles for active links in navbar */
 .active a {
   color: var(--secondary-color);
   font-weight: 600;
 }
 
+/* Styles for navbar links on hover */
 .navbar a:hover {
   color: var(--secondary-color);
   transform: scale(1.2);
 }
 
-.link:hover {
-  cursor: pointer;
-}
-
+/* Styles for navigation container */
 .navigation {
   display: flex;
   align-items: center;
 }
 
+/* Styles for nav-links list */
 .nav-links {
   list-style: none;
   display: flex;
 }
 
+/* adjust padding for each link in nav-links */
 .nav-links .link {
   padding: 0 1.2rem;
 }
@@ -61,15 +65,19 @@
   display: none;
 }
 
+/* Media query for screen size below 850px */
 @media screen and (max-width: 850px) {
+  /* padding adjusted for navbar container */
   .navbar {
     padding: 0.5rem 1rem;
   }
 
+  /* hides nav-links from the display to show hamburger menu */
   .nav-links {
     display: none;
   }
 
+  /* styles for hamburger menu and set it to visible */
   .hambrgr-menu {
     padding-right: 1rem;
     visibility: visible;
@@ -79,11 +87,13 @@
     cursor: pointer;
   }
 
+  /* style for the hamburger menu on hover */
   .hambrgr-menu:hover > * {
     border-color: var(--secondary-color);
     transition: all 0.3s;
   }
 
+  /* styles for each line of hamburger menu */
   .ham-line {
     border-radius: 10%;
     width: 50%;
@@ -91,6 +101,7 @@
     margin: 3px;
   }
 
+  /* style for navigation menu dropdown after hamburger is clicked */
   .nav-menu {
     background-color: var(--primary-color);
     position: fixed;
@@ -100,9 +111,10 @@
     width: 100%;
     height: 100%;
     border-radius: 10px 10px 0px 0px;
-    animation: zoomIn 0.3s ease-in-out;
+    animation: slideIn 0.3s ease-in-out;
   }
 
+  /* styles for navigation menu links */
   .nav-menu ul {
     display: inline-block;
     position: relative;
@@ -112,6 +124,7 @@
     list-style: none;
   }
 
+  /* styles for each item in the list in navigation menu */
   .nav-menu-links {
     font-weight: 550;
     font-size: large;
@@ -133,13 +146,13 @@
   transition: all 0.2s ease;
 }
 
-@keyframes zoomIn {
+
+/* Define the slideIn animation */
+@keyframes slideIn {
   from {
-    transform: scale(0);
-    opacity: 0;
+    transform: translateX(100%);
   }
   to {
-    transform: scale(1);
-    opacity: 1;
+    transform: translateX(0);
   }
 }

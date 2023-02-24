@@ -1,13 +1,27 @@
 import React from "react";
-import './Popular-movies.css';
+import "./Popular-movies.css";
 import { useNavigate } from "react-router-dom";
 
-const PopularMovies = ({ title, poster_path, release_date, vote_average, overview, genres, id }) => {
+// destructure props to extract necessary movie information
+const PopularMovies = ({ title, poster_path, release_date, id }) => {
+  // initialise navigation function using the useNavigate hook
   const navigate = useNavigate();
-  // const state = {title, poster_path, release_date, vote_average,overview, genres, id};
+  // returns the movie component with an onClick event that navigates to movie details page
   return (
-    <div className="movie" onClick={() => navigate(`/movie/${id}`)}>
-      <img className="movie-poster" src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title} />
+    <div
+      className="movie"
+      onClick={() => navigate(`/movie/${id}`)}
+      aria-label={`${title}`}
+      tabIndex="0"
+      // role="button"
+    >
+    {/* Render an image of the movie poster with alt text */}
+      <img
+        className="movie-poster"
+        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        alt={title}
+      />
+      {/* Display the movie title and release year */}
       <div className="movie-info">
         <div className="movie-title">{title}</div>
         <div className="movie-year">{release_date}</div>
@@ -15,6 +29,5 @@ const PopularMovies = ({ title, poster_path, release_date, vote_average, overvie
     </div>
   );
 };
-
 
 export default PopularMovies;

@@ -1,6 +1,6 @@
 .movie-card {
   width: 80%;
-  height: auto;
+  height: 50vh;
   background-color: var(--primary-color);
   color: var(--text-color);
   border-radius: 10px;
@@ -50,8 +50,9 @@
 
 }
 
-@media screen and ( max-width: 600px) {
+@media screen and ( max-width: 800px) {
   .movie-card {
+    height: auto;
     flex-direction: column;
   }
 
