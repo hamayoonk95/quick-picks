@@ -2,31 +2,38 @@ import React from "react";
 import "./Movie.css";
 import noimage from "../../assets/no-image.png";
 
-const Movie = (props) => {
+const Movie = ({poster_path, title, release_date, vote_average, genres, overview}) => {
   
+  // Render movie card on movie page
   return (
+    // movie card container
     <div className="movie-card">
       <div className="m-poster-container">
+      {/* Render movie poster, if no poster then render no-Image from assets */}
         <img
           className="m-poster"
           src={
-            props.poster_path
-              ? "https://image.tmdb.org/t/p/original/" + props.poster_path
+            poster_path
+              ? "https://image.tmdb.org/t/p/original/" + poster_path
               : noimage
           }
-          alt={props.title}
+          alt={title + " poster"}
         />
       </div>
+      {/* Movie information container */}
       <div className="m-info-container">
+      {/* Movie title and rating container */}
         <div className="m-title-rating">
           <div className="m-title">
-            {props.title} ({props.release_date})
+            {title} ({release_date})
           </div>
-          <div className="m-rating">{props.vote_average}</div>
+          <div className="m-rating">{vote_average}</div>
         </div>
-        <div className="m-genre">{props.genres.split("-").join(", ")}</div>
+        {/* Movie genre container */}
+        <div className="m-genre">{genres.split("-").join(", ")}</div>
+        {/* Movie description container */}
         <div className="m-description">
-          {props.overview}
+          {overview}
         </div>
       </div>
     </div>

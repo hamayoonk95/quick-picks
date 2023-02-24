@@ -50,7 +50,7 @@
 
 }
 
-@media screen and ( max-width: 700px) {
+@media screen and ( max-width: 800px) {
   .movie-card {
     height: auto;
     flex-direction: column;
