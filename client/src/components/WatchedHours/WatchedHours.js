@@ -12,14 +12,16 @@ const WatchedHours = ({ movies }) => {
   let totalHours = hours.reduce((sum, a) => sum + a, 0);
   // convert minutes to hours
   totalHours = Math.round(totalHours / 60);
+
   return (
     <>
-    {/* CountUp library that displays total Hours of movies watched by user with an animation */}
+      {/* Display the total number of hours watched using the CountUp library, which animates the number  */}
       <CountUp
         className="count"
         prefix={"Total Hours Spent Watching: "}
         end={totalHours}
         duration={1}
+        aria-label={`Total Hours Spent Watching: ${totalHours}`}
       />
     </>
   );

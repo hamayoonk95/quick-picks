@@ -4,14 +4,18 @@ import "./Filter-search.css";
 import CircleLoader from "react-spinners/CircleLoader";
 
 const FilterSearch = () => {
+  // Set default values for the different form inputs
   const [mood, setMood] = useState("happy");
   const [timeOfDay, setTimeOfDay] = useState("morning");
   const [ratings, setRatings] = useState("9");
   const [occassion, setOccassion] = useState("alone");
   const [releaseDate, setReleaseDate] = useState("2020-2023");
+  // Set loading state to display loading spinner while waiting for search results
   const [loading, setLoading] = useState(false);
+  // Set loading state to display loading spinner while waiting for search results
   let id;
 
+   // Async function to fetch data from DB and pass factors as parameters
   const getMovie = async (mood, timeOfDay, ratings, occassion) => {
     const response = await fetch(
       `/filter-movies?mood=${mood}&timeOfDay=${timeOfDay}&ratings=${ratings}&occassion=${occassion}&releaseDate=${releaseDate}`
@@ -20,7 +24,10 @@ const FilterSearch = () => {
     id = movie.id;
   };
 
+  // hook to navigate to the movie page after submitting the form
   const navigate = useNavigate();
+
+  // Handler function to submit the form and call the getMovie function
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -35,17 +42,20 @@ const FilterSearch = () => {
     <div className="form-container">
       <h1>Movie Recommendation Form</h1>
       {loading ? (
+        // if loading state is true, Display loading spinner while waiting for search results
         <div className="loader-container">
           <CircleLoader className="loader" size={40} color="#0e3a76" />
           <p>Searching...</p>
         </div>
       ) : (
+        // else display the form
         <form className="filter-search-form" onSubmit={handleSubmit}>
           <label htmlFor="mood">What is your current mood?</label>
           <select
             id="mood"
             value={mood}
             onChange={(e) => setMood(e.target.value)}
+            aria-label="Select your current mood"
           >
             <option value="happy">Happy</option>
             <option value="sad">Sad</option>
@@ -58,6 +68,7 @@ const FilterSearch = () => {
             id="timeofday"
             value={timeOfDay}
             onChange={(e) => setTimeOfDay(e.target.value)}
+            aria-label="Select the time of day"
           >
             <option value="morning">Morning</option>
             <option value="afternoon">Afternoon</option>
@@ -70,6 +81,7 @@ const FilterSearch = () => {
             id="occassion"
             value={occassion}
             onChange={(e) => setOccassion(e.target.value)}
+            aria-label="Select the occasion"
           >
             <option value="alone">Alone</option>
             <option value="couple">Couples night</option>
@@ -82,6 +94,7 @@ const FilterSearch = () => {
             id="rating"
             value={ratings}
             onChange={(e) => setRatings(e.target.value)}
+            aria-label="Select the minimum rating for the movie"
           >
             <option value="9">&gt; 9</option>
             <option value="8">&gt; 8</option>
@@ -95,6 +108,7 @@ const FilterSearch = () => {
             id="release"
             value={releaseDate}
             onChange={(e) => setReleaseDate(e.target.value)}
+            aria-label="Select a decade of the movie release date"
           >
             <option value="2020-2023">2020-Present</option>
             <option value="2010-2019">2010-2019</option>
