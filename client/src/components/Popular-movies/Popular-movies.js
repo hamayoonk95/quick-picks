@@ -13,9 +13,13 @@ const PopularMovies = ({ title, poster_path, release_date, id }) => {
       onClick={() => navigate(`/movie/${id}`)}
       aria-label={`${title}`}
       tabIndex="0"
-      // role="button"
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          navigate(`/movie/${id}`)
+        }
+      }}
     >
-    {/* Render an image of the movie poster with alt text */}
+      {/* Render an image of the movie poster with alt text */}
       <img
         className="movie-poster"
         src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
