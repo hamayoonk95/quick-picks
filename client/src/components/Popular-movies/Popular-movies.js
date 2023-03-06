@@ -9,6 +9,7 @@ const PopularMovies = ({ title, poster_path, release_date, id }) => {
   // returns the movie component with an onClick event that navigates to movie details page
   return (
     <div
+      data-testid="popular-component"
       className="movie"
       onClick={() => navigate(`/movie/${id}`)}
       aria-label={`${title}`}
