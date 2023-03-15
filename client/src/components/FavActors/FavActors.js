@@ -16,15 +16,17 @@ const FavActors = ({ movies }) => {
   // Loop through all the movies
   movies.forEach((movie) => {
     // split the credits by '-' to get individual actors
-    const actors = movie.movie.credits.split("-");
-    // loop through all actors and count their occurrences
-    actors.forEach((actor) => {
-      if (!actorCount[actor]) {
-        actorCount[actor] = 1;
-      } else {
-        actorCount[actor]++;
-      }
-    });
+    if (movie.movie.credits.trim() !== "") {
+      const actors = movie.movie.credits.split("-");
+      // loop through all actors and count their occurrences
+      actors.forEach((actor) => {
+        if (!actorCount[actor]) {
+          actorCount[actor] = 1;
+        } else {
+          actorCount[actor]++;
+        }
+      });
+    }
   });
 
   // Convert actorCount object to an array of objects to use with BarChart
@@ -34,7 +36,7 @@ const FavActors = ({ movies }) => {
   }));
   // sort the actorData array by value and return top 5 actors
   const top5Actors = actorData.sort((a, b) => b.value - a.value).slice(0, 5);
-
+  console.log(top5Actors)
   return (
     // Bar chart container
     <div className="bar-container">
