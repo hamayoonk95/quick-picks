@@ -1,23 +1,28 @@
 import React from "react";
 import './StreamingPlatformIcon.css';
+import netflix from "../../assets/netflix.png";
+import vudu from "../../assets/vudu.png";
+import prime from "../../assets/prime.png";
+import disneyPlus from "../../assets/disney+.png";
+import disney from "../../assets/disney.png";
 
 const StreamingPlatformIcon = ({src, link}) => {
     let icon;
     switch (src) {
         case 'netflix':
-        icon = require("../../assets/netflix.png");
+        icon = netflix;
         break;
         case 'vudu':
-        icon = require("../../assets/vudu.png");
+        icon = vudu;
         break;
         case 'amazon_prime':
-        icon = require("../../assets/prime.png");
+        icon = prime;
         break;
         case 'disney_plus':
-        icon = require("../../assets/disney+.png");
+        icon = disneyPlus;
         break;
         case 'apple_tv':
-        icon = require("../../assets/disney.png");
+        icon = disney;
         break;
         default:
             icon = null;

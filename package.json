@@ -7,7 +7,8 @@
   "scripts": {
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "install": "cd client && npm i --ignore-scripts && cd .. && npm i --ignore-scripts"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,6 @@
   },
   "homepage": "https://github.com/hamayoonk95/quick-picks#readme",
   "dependencies": {
-    "@testing-library/react": "^14.0.0",
     "bcrypt": "^5.1.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",

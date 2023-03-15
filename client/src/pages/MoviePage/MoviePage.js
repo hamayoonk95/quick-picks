@@ -22,13 +22,15 @@ const MoviePage = () => {
   const [movie, setMovie] = useState(null);
   // State to hold the available streaming services for the movie
   const [streamingService, setStreamingService] = useState(null);
-   // State to manage loading status
+  // State to manage loading status
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch movie data from API when the id parameter changes
   useEffect(() => {
     const fetchMovie = async () => {
-      const response = await fetch(`/movie/${id}`);
+      const response = await fetch(
+        `/movie/${id}`
+      );
       const result = await response.json();
       setMovie(result);
     };
@@ -37,34 +39,31 @@ const MoviePage = () => {
 
   // Refresh JWT token when it is available in local storage
   useEffect(() => {
-    console.log(localStorage.accessToken);
     if (localStorage.accessToken) {
       refreshToken();
     }
   }, [token]);
 
   // Fetch available streaming services for the movie
-  // useEffect(() => {
-  //   console.log(movie);
-  //   const fetchData = async () => {
-  //     if (movie) {
-  //       const data = await getAvailability(movie.tmdb_id);
-  //       if (data.length > 0) {
-  //         setStreamingService(data[0].sources);
-  //         setIsLoading(false);
-  //       }
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      if (movie) {
+        const data = await getAvailability(movie.tmdb_id);
+        if (data.length > 0) {
+          setStreamingService(data[0].sources);
+          setIsLoading(false);
+        }
+      }
+    };
 
-  //   if (isLoading) {
-  //     fetchData();
-  //   }
-  // }, [movie, isLoading]);
+    if (isLoading) {
+      fetchData();
+    }
+  }, [movie, isLoading]);
 
   // Handle watch button click
   const handleWatch = async () => {
     try {
-      console.log(token);
       const response = await axiosJWT.post(
         "/watch-movie",
         {
@@ -76,12 +75,12 @@ const MoviePage = () => {
           },
         }
       );
+      
       if (response.data.success) {
         setResMsg("Movie added to watch history");
         setResponseType("success");
       }
     } catch (error) {
-      console.log(error.response.status);
       if (error.response.status === 409) {
         setResMsg("This movie has already been added to your watch history");
         setResponseType("error");
@@ -98,7 +97,7 @@ const MoviePage = () => {
 
   return (
     <div className="container">
-    {/* Displays error message to the user */}
+      {/* Displays error message to the user */}
       <div className="flash-msg">
         {resMsg && <FlashMsg msg={resMsg} type={responseType} />}
       </div>
@@ -110,18 +109,30 @@ const MoviePage = () => {
       ) : null}
 
       {/* If streaming services are available for the movie, displays them */}
+
       <div className="streaming-icons">
-        {/* {streamingService &&
-          streamingService.map((service) => (
-            <StreamingPlatformIcon
-              key={service.source}
-              src={service.source}
-              link={service.link}
-            />
-          ))} */}
-        <StreamingPlatformIcon key={"abc"} src={"netflix"} link={"//"} />
-        <StreamingPlatformIcon key={"aa"} src={"disney_plus"} link={"//"} />
-        <StreamingPlatformIcon key={"aab"} src={"vudu"} link={"//"} />
+        {streamingService && streamingService.length > 0 ? (
+          streamingService.map((service) =>
+            movie ? (
+              <StreamingPlatformIcon
+                key={service.source}
+                src={service.source}
+                link={service.link}
+              />
+            ) : null
+          )
+        ) : (
+          <a
+            className="google-btn"
+            href={`https://www.google.com/search?q=${encodeURIComponent(
+              movie?.title || ""
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Search Google for "{movie?.title}"
+          </a>
+        )}
       </div>
 
       {/* Buttons to handleWatch which adds movie to the database and associates it with the user, or go to PrevPage */}

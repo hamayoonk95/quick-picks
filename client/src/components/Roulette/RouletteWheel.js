@@ -2,6 +2,7 @@ import React from "react";
 import "./RouletteWheel.css";
 import { Wheel } from "react-custom-roulette";
 
+const defaultData = [{ option: "Roulette is empty", style: {backgroundColors: "#000"}}];
 // Renders Roulette wheel from react-custom-roulette library
 const RouletteWheel = (props) => {
   return (
@@ -10,7 +11,7 @@ const RouletteWheel = (props) => {
     <Wheel
       mustStartSpinning={props.mustSpin}
       prizeNumber={props.prizeNumber}
-      data={props.data}
+      data={props.data.length > 0 ? props.data : defaultData}
       textColors={["#fff"]}
       fontSize={12}
       backgroundColors={[
