@@ -1,0 +1,603 @@
+commit 2477b4f66d60e73203ca363d5d94c71215350a57
+Merge: f46cfb5 bc9f36e
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Wed Mar 15 19:42:06 2023 +0000
+
+    Merge pull request #16 from hamayoonk95/production
+    
+    Production
+
+commit bc9f36efb8c436781c0e9ddb8a4cfd5fdff1a6db
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Mar 15 19:41:13 2023 +0000
+
+    removed error for when actors names were empty strings by checking for empty string values
+
+commit 9ca130406cdf7c35dbb23dd4c0e7b689af1d2d26
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Mar 15 19:32:05 2023 +0000
+
+    added seeds files, fixed errors with JWT accessToken verification
+
+commit e3f4a6d24845471c3ef09be38eab23b064161f1c
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Mar 6 14:04:20 2023 +0000
+
+    Initial testing
+
+commit f46cfb5052daab3a95916ca5a7f4a1e86191ba82
+Merge: 4ec7510 1c21a4e
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Mon Feb 27 20:30:55 2023 +0000
+
+    Merge pull request #15 from hamayoonk95/production
+    
+    Production
+
+commit 1c21a4eeb4d89f4a9c8327f90a93c02f5aae1900
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Feb 27 20:29:59 2023 +0000
+
+    front end accessibility added
+
+commit 75cb8c4c07ee98d6183cf94733586747d7890f15
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Feb 27 19:44:08 2023 +0000
+
+    added accessibility to some components, added comments
+
+commit 4ec7510421a2d700464983ed77621369eccb6464
+Merge: ee4a97c cd95968
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Fri Feb 24 22:15:54 2023 +0000
+
+    Merge pull request #14 from hamayoonk95/production
+    
+    Production
+
+commit cd95968dd6162fa988961f689a9484bc204a4a53
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Feb 24 22:15:09 2023 +0000
+
+    added accessibility and comment to navbar,popularmovies and movie components
+
+commit aa53703a153849ca13b896089b89ee1fab48cffa
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Feb 14 18:37:51 2023 +0000
+
+    Movie container size fixed
+
+commit ee4a97ca2ab2c012913b3ebf5df20ded6c4b7f09
+Merge: 00d0def e79d710
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Tue Feb 14 18:27:00 2023 +0000
+
+    Merge pull request #13 from hamayoonk95/production
+    
+    Production
+
+commit e79d7103f0d52f2577dc042af07ab9294886ce49
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Feb 14 18:26:13 2023 +0000
+
+    fixed responsiveness of piechart and bargraph in analytics, moviePage bug fixed (calling refreshToken)
+
+commit 13f15dd4988531cb52028c7d4506318d35d70569
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sat Feb 4 15:04:32 2023 +0000
+
+    changed icons in random movie container to appear to the left and right of the container on large devices
+
+commit bacadc494cc07c271c71f60d575774b857f75902
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Feb 2 13:42:50 2023 +0000
+
+    moved the refreshtoken and axiosJWT functions to utils folder so they can be utilised by MoviePage as well, created a query that adds movies_id and user_id to user_movies table if it doesnot exist otherwise return error and displays it
+
+commit a420e4ecd9ba43c8b858cfd0addc5e1fd378f649
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Feb 1 20:59:54 2023 +0000
+
+    pie chart and bar graph added from recharts library to show user data about their most watched genres and actors, fixed the query in getUserMovies where it was returning only user with id = 1
+
+commit eb6f2465f37142b36f966ebaf4c133f6f69294ca
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Feb 1 14:59:52 2023 +0000
+
+    added watchedHours component to display users's watched hours, used countup react library to add animation to the hours number,
+
+commit 00d0defa5147ab5260e828e0180c104d43bcc108
+Merge: 8ac96d2 a0317a4
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Wed Feb 1 13:29:11 2023 +0000
+
+    Merge pull request #12 from hamayoonk95/production
+    
+    Production
+
+commit a0317a4a651dc1cce7bf01521d87aae8ed588641
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Feb 1 13:28:14 2023 +0000
+
+    table associations fixed, organised files and changed their name for easy identification
+
+commit 9504ea4e50f02a0d607b000d39b824f25097a039
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Feb 1 01:10:32 2023 +0000
+
+    user_movies table created and associated with user and movies, new query added where a user and its movies are returned to the analytics page and displayed
+
+commit 7c4d09f85057cb5bebf8550d716f42ddb8ecdfed
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Jan 30 21:31:09 2023 +0000
+
+    user authenitcation, validation complete
+    
+    added jwt token working, user validation working, flash messages to show user errors or success working
+
+commit 8ac96d28ed5211dc4351e364d57e725bd77b3785
+Merge: 5decc46 083f0f4
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Mon Jan 30 12:41:03 2023 +0000
+
+    Merge pull request #11 from hamayoonk95/production
+    
+    Production
+
+commit 083f0f4eefd2c878147eed37c781eb39130e80c9
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Jan 30 12:38:49 2023 +0000
+
+    navbar login/logout buttons fixed
+
+commit 6ce384e8d01b19550b4fcc52869e3e4c72bd024a
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Jan 30 00:16:33 2023 +0000
+
+    accessToken and refresh jwt tokens added and working, needs to fix navbar logout and login icons switch
+
+commit e8ad21e487a63860dca912ff0ff73029fa13ac8c
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sun Jan 29 16:29:45 2023 +0000
+
+    jwt incomplete
+
+commit e010063ab998264b351b65f13137a893df1a18e8
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sun Jan 29 16:28:52 2023 +0000
+
+    jwt not complete
+
+commit 852e98d54c3b62c9c3ba085283d02a0eb66a5d03
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sun Jan 29 12:03:31 2023 +0000
+
+    broken jwt login, needs to fix refreshToken handling and rendering analytics page
+
+commit ed765ef68e9dda43734ef5003195e07331ff86c1
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Jan 27 23:07:45 2023 +0000
+
+    jwt token attempt
+
+commit 5decc46a6f12b660a3d6bf99b3cb1ddbdf18b3a8
+Merge: ed344f3 2084f9f
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Fri Jan 27 16:19:55 2023 +0000
+
+    Merge pull request #10 from hamayoonk95/production
+    
+    Production
+
+commit 2084f9ff3cc3a4c7aa95cc97ae6a0532d4cd2364
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Jan 27 16:16:02 2023 +0000
+
+    User model added, simple login functionality added
+
+commit 1b65c3a71bfc2ef213e3355408b5bb5d1c7910c9
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Jan 27 14:40:49 2023 +0000
+
+    added sequelizer ORM, added models for movies table, changed data retreival in routes and getMovies
+
+commit a3706db7a203e0732ff448f008c66c7da06e6723
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Jan 26 01:43:48 2023 +0000
+
+    basic login and create account page added, basic routes added for login and create account in the server 'non functional yet'
+    
+    login and create account page created but not yet functional, changed styles for movie page and random component to adjust to different screen sizes, basic routing added for login and create account page on the server, yet to make a users table on db to allow login functionality
+
+commit bb0b83cfe189c438b72acdd2150bb774498b76ee
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Jan 26 00:38:32 2023 +0000
+
+    login page added, roulette and random movie components' heights adjusted
+
+commit 4b031fe013d52df7dff1c800338dd421422e1fa4
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Jan 25 00:12:28 2023 +0000
+
+    highlighting active link in the navbar
+
+commit 1192930a38d9137dd9ebd9565f348269ed180985
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Jan 24 23:48:32 2023 +0000
+
+    roulette centered properly
+
+commit ac16cd018b6994429f20f3c80afee7bcbba05848
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sun Jan 22 18:36:05 2023 +0000
+
+    Roulette responsiveness added, horizontally aligned on larger devices, vertically on smaller
+
+commit 3844b4b14838bb43590db8a0c94202c07c6f464f
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sat Jan 21 14:35:54 2023 +0000
+
+    Movie component margin added
+
+commit ed344f36a9a8872ee2202cba3134b73a12a89d51
+Merge: 043582e e0e7479
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Fri Jan 20 22:16:53 2023 +0000
+
+    Merge pull request #9 from hamayoonk95/production
+    
+    Production
+
+commit e0e74798295e1d619c0296ae538e17d773f392ab
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Jan 20 22:15:56 2023 +0000
+
+    Movie page redesigned
+
+commit 2feef13d2174ce2b8ab2726e76693e33c528eefb
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Jan 20 18:37:58 2023 +0000
+
+    random component design changed
+
+commit 1a32fa3958a378df2b4253222f47905b8e91b351
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Jan 20 11:32:49 2023 +0000
+
+    added colors and other styles to roulette
+
+commit d7a7d721d478633976af037b9902af36f61e587b
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Jan 18 13:12:17 2023 +0000
+
+    added search by date to filtersearch
+
+commit b1d65c0338e14ac0d7fe3f300125bdca8cd4a9d1
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Jan 17 19:39:28 2023 +0000
+
+    fixed === in roulette page, improved roulette search query
+
+commit 043582eddfa53d201dcdf9418ec4bf95fcce8792
+Merge: 86feac9 2319809
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Tue Jan 17 05:28:17 2023 +0000
+
+    Merge pull request #8 from hamayoonk95/production
+    
+    Production
+
+commit 2319809f8ed8f4e6892c221435e4c866f838a1f8
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Jan 17 05:26:43 2023 +0000
+
+    Fixed reponsiveness of the roulette, added a dropdown of movies so when a movie is clicked it is added to the roulette rather than clicking on submit button, fixed the search query in getMovies, removed old code from server.js
+
+commit 156a9ca35dbf96befbbd7bda50edbdeb8807a0f9
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Jan 11 14:03:32 2023 +0000
+
+    added basic roulette and functionality, changes made to searchBar to return results after a few seconds using a debounce function
+
+commit 813b05c4374a93f8b7b17136196243453edb13cc
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Jan 4 15:15:44 2023 +0000
+
+    changed styles of movie component to make it more responsive
+
+commit 7289fbc2eca8a79bb4e1e666182b4004bd5d589f
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Jan 4 01:20:10 2023 +0000
+
+    changed sizes for most components to fit all screen sizes properly
+
+commit 86feac91d00c18ad2e19415d834fe640eadc75c6
+Merge: bbe2112 5c01da3
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Tue Jan 3 15:19:23 2023 +0000
+
+    Merge pull request #7 from hamayoonk95/production
+    
+    Production
+
+commit 5c01da303001f4920019c4bdc8f47cd40aa7a797
+Merge: 7d15c3c 3afca95
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Tue Jan 3 15:18:52 2023 +0000
+
+    Merge pull request #6 from hamayoonk95/server
+    
+    Server
+
+commit 3afca950a4ed45f060ff964ec90458279197c581
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Jan 3 15:15:56 2023 +0000
+
+    fixed search, filtersearch, removed apicalls, fixed queries in db
+    
+    fixed search function so now it calls db instead of API, fixed filtersearch and added a genreMapping to map genres with ones in db to get recommendations, styles the streamingIcons on MoviePage, added routes to all the components to call  db, changed the useNavigate so that instead of passing movie in state, it sends the movie id instead for moviePage to get the movie from db using id
+
+commit d5d9fae1685b909490f25079cc79fdb3807ed448
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Jan 3 02:28:11 2023 +0000
+
+    added concurrently, made changes to the db calls with the new database for faster responses
+
+commit 95e84064182720fd67465009a532697c281bfd43
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Tue Jan 3 00:11:14 2023 +0000
+
+    fixed routes, styling for the Random Component
+
+commit 8060922a83d8a72f7f9fedca0bb9376dc89776f5
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Jan 2 19:24:07 2023 +0000
+
+    Fixed Random and popularMovies on the Homepage
+    
+    Homepage and popularmovies are not indexing database to get the movies via server. API dependency deleted
+
+commit 8e7baddf5ce090a47b73de7445e334bffaea66f2
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Jan 2 01:04:31 2023 +0000
+
+    added routes for Homepage
+
+commit 6503e8bfec77263c32185a1b2e49b28ba9845ecc
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Jan 2 00:16:57 2023 +0000
+
+    server created, db connected, connections work to both server and db. some middleware added for errors and routes not available
+
+commit f221e8a53c6b28ef727da22af1d54735ec558c65
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sat Dec 31 01:30:58 2022 +0000
+
+    added favicon
+
+commit 483a6af0748b54e92f2ec8b5a86155c3f91da5c5
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sat Dec 31 01:26:35 2022 +0000
+
+    Search bar fixed, now returns results
+    
+    Search bar API call moved to its own file, created a new component called SearchedMovie that receives props from SearchBar returned movie to display a list of movies below navigation bar
+
+commit bbe21129daf5a08ebd16021d50e2d068fe15dd35
+Merge: 535c9d3 7d15c3c
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Fri Dec 30 20:59:31 2022 +0000
+
+    Merge pull request #5 from hamayoonk95/production
+    
+    Production
+
+commit 7d15c3cd67e4cd49904f16f0b03e5290dd184577
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Dec 30 20:58:38 2022 +0000
+
+    Fixed genreMapping so it returns two movies, moved the params in API calls to its own params object
+
+commit 2fb405c76401b4cc2e68b200ef1fa7f9a6d8906b
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Dec 30 14:12:47 2022 +0000
+
+    added spinner to the filterSearch, added link to poster on randomMovie component, made changes to filterSearch so it has an option for alone
+
+commit 58f0b3834a26b6133a4cc91bcd6fd94939b43c99
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Dec 30 01:32:16 2022 +0000
+
+    added styles to buttons on moviepage, form on filter-search. Fixed the API call so now it takes ratings into consideration when using filter-search
+
+commit 92b13a18ad82f472e0dfeb2a063b392600a3cb1e
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Dec 29 01:36:34 2022 +0000
+
+    completed the moviePage UI, added an API that gets movie availability and provides link. added id to the state in some components such as popularMovies, FilterSearch and RandomMovie so that the API can use it to gprovide movie sources
+
+commit a63f89e85e984a8a88cb522a463138b65c4027e0
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Dec 28 22:42:53 2022 +0000
+
+    added genreMapping file that map factors to genres, addd some styles to the movie page for responsivness
+
+commit 535c9d39d6274ecf38b719cd2f2e26f9662e24d7
+Merge: b1cb125 6c719ab
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Wed Dec 28 15:16:42 2022 +0000
+
+    Merge pull request #4 from hamayoonk95/production
+    
+    Production
+
+commit 6c719ab61681262dc98c92bc4c9a2f2754f44455
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Dec 28 15:08:06 2022 +0000
+
+    getting genre fixed for popularMovies and FilterSearch
+
+commit 64a6a76f2ac9abb5a87004c4110c30432aaf245b
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Dec 28 14:49:58 2022 +0000
+
+    Movie component on the movie page ready, made changes to random movie, filter-search and popular movies to use the name variable for any movie info for modularity
+
+commit bd493586bcb9ad6237319da8205662ec4a7bff9f
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 23:35:15 2022 +0000
+
+    fixed the link to the MoviePage on randomMovie to only work on the title and info and not the whole container
+
+commit 30cc9898e59bce35ef977ed0ed31e0131a0a3439
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 23:28:04 2022 +0000
+
+    Created basic filter search, edited randomMovie to navigate to MoviePage and send props of the movie to be rendered on Movie page, Added MoviePage which needs to be completed
+
+commit 6498d924d6a3909189cfd0b243a71553a7902d2c
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 14:26:20 2022 +0000
+
+    search funtion, some work done but not working properly yet
+
+commit cba6c60d8a7c72fcf844a3f6bad12026d5d29b91
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 14:21:52 2022 +0000
+
+    Fixed the responsivess of the random movie component
+
+commit b1cb125e50c674ddb0f8e134a96776cf58d8dab0
+Merge: 2fcb885 c6420f0
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Mon Dec 26 00:54:18 2022 +0000
+
+    Merge pull request #3 from hamayoonk95/production
+    
+    Production
+
+commit c6420f03a2d0dfe66da9e8d81cd16d48b8151234
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 00:53:05 2022 +0000
+
+    added previous button logic in the random component and styled the buttons
+
+commit 49afe0ca284dd9bb7c68c27d7073d00d09eea5d1
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 00:29:32 2022 +0000
+
+    fixed the searchbar in navigation
+    
+    the naviagation had a gap property which does not work in older browsers so added padding to nav-links
+
+commit a413f1af905f2124b2869c002d219443579cb50e
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Mon Dec 26 00:16:40 2022 +0000
+
+    Popular movies added
+    
+    Popular movies on the Homepage added and styled
+
+commit 2fcb885fb02cf393af1ab25bb4dfa7264cad964c
+Merge: 972e21c 6d17f65
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Sun Dec 25 15:48:02 2022 +0000
+
+    Merge pull request #2 from hamayoonk95/production
+    
+    APIs added, env file added, Random movie component added
+
+commit 6d17f65772c7e90f8d1348ebd3e0d4ee1469505d
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sun Dec 25 15:47:02 2022 +0000
+
+    APIs added, env file added, Random movie component added
+    
+    ENV file with the API added to the files, Random movie component fixed and responsiveness added, icons work, genre added
+
+commit 972e21c440864904fbd759e0207e07dbff5d928e
+Merge: 6b85ae3 3e4381c
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Sat Dec 24 01:24:32 2022 +0000
+
+    Merge pull request #1 from hamayoonk95/production
+    
+    Search bar and Basic logo added
+
+commit 3e4381c24ec507faee9bc2fbc1ed798a89e8285f
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Sat Dec 24 01:19:38 2022 +0000
+
+    Search bar and Basic logo added
+    
+    Search bar added with collapsable and expandable feature fully responsive, Basic logo created , should change in the future
+
+commit 6b85ae307ccbef5b56baba9440a972bb1dd11c4e
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Fri Dec 23 15:49:26 2022 +0000
+
+    React router added, pages moved to their own folder, Random-movie card added
+    
+    React-router-dom has been installed to allow multi-page routing, every page in the app has been moved to its own folder under pages folder, created a structure for the random movie card on the homepage using component called Random-movie in the components folder
+
+commit c1b93c4a6da3449ac4394d5f12a4f92d0fbf6800
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Dec 22 16:15:02 2022 +0000
+
+    Minor changes to navbar
+    
+    added hover effect and changed some menu links
+
+commit a3d98c6d8af6bb132badbf01bc40dd0d32489642
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Dec 22 15:41:54 2022 +0000
+
+    Navbar Completed
+    
+    Added hamburger menu, animations, and links to the na navbar , only missing correct link in the anchor tags
+
+commit 8cd6d8262c8941f0b9fed9e7472b1efa23f1b8a3
+Merge: d2808c4 da8b614
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Dec 22 15:40:50 2022 +0000
+
+    Merge branch 'main' of https://github.com/hamayoonk95/quick-picks
+
+commit d2808c4fc0dda62326f6873f63d532bb4f84a176
+Merge: 1e21e69 1d9c5b2
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Dec 22 00:30:59 2022 +0000
+
+    Merge branch 'main' of https://github.com/hamayoonk95/quick-picks
+
+commit da8b614defb8d36c75f81869872e03ee11e170e8
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Thu Dec 22 00:28:53 2022 +0000
+
+    Delete .gitignore
+
+commit 1e21e699386d738a2a17f77348e67066248e7e4f
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Thu Dec 22 00:19:34 2022 +0000
+
+    Navbar Added
+    
+    Navigation bar added, removed unnecessary files from create-react-app
+
+commit f6e39cb9c76114762bbcf1a118a0309682321576
+Author: Hamayoon <hamayoonk38@gmail.com>
+Date:   Wed Dec 21 23:28:56 2022 +0000
+
+    Initialize project using Create React App
+
+commit 1d9c5b2b8e192e6f4fe170c1bedc0928978cd73c
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Wed Dec 21 23:28:54 2022 +0000
+
+    Update README.md
+
+commit 3550d067786361d953a84dc9c11f0362e4477871
+Author: hamayoonk95 <70804132+hamayoonk95@users.noreply.github.com>
+Date:   Wed Dec 21 23:27:33 2022 +0000
+
+    Initial commit
