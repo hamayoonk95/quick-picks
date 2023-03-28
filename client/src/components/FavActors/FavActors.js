@@ -36,7 +36,6 @@ const FavActors = ({ movies }) => {
   }));
   // sort the actorData array by value and return top 5 actors
   const top5Actors = actorData.sort((a, b) => b.value - a.value).slice(0, 5);
-  console.log(top5Actors)
   return (
     // Bar chart container
     <div className="bar-container">
