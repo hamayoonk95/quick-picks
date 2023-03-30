@@ -6,18 +6,18 @@
 }
 
 .pie-genre {
-  width: 100%;
+  width: 90%;
 }
 
 
 .pie-text {
-    font-size: 1rem;
+    font-size: 0.7rem;
 }
 
-
-@media  screen and (max-width: 500px) {
-    .pie-text {
-        font-size: 0.7rem;
+@media  screen and (max-width: 800px) {
+    .pie-genre {
+        width: 100%;
     }
+
 }
 

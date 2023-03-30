@@ -59,16 +59,18 @@ const Analytics = () => {
           <div className="watched-hours">
             <WatchedHours movies={userMovies} aria-label="Total watched hours"/>
           </div>
+          <div className="graphs">
           <div className="watched-genres">
             <WatchedGenres movies={userMovies}/>
           </div>
           <div className="fav-actors">
             <FavActors movies={userMovies}/>
           </div>
+          </div>
         </>
       ) : (
         // if userMovies is empty, then display to user that they have not watched anything
-        <div className="not-watched"> You havent watched anything yet</div>
+        <div className="not-watched"> You haven't watched anything yet. To see charts and graphs of your movie preferences, please add movies to your watch history.</div>
       )}
     </div>
   );
