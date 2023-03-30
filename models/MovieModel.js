@@ -1,3 +1,4 @@
+// Defines a sequelize model for the "movies" table
 export default (sequelize, DataTypes) => {
   const Movie = sequelize.define("movies", {
     id: {
@@ -47,14 +48,11 @@ export default (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  // / db.Movie.belongsToMany(db.User, {
-    //   through: db.User_movies
-    // });
-
+  // Define the association between the Movie model and the User model
   Movie.associate = function(models) {
     Movie.belongsToMany(models.User, {
-      through: models.User_movies,
-      foreignKey: "id"
+      through: models.User_movies, // using the User_movies table as the join table
+      foreignKey: "id" // foreign key for the Movie model in the join table
     });
   };
 
