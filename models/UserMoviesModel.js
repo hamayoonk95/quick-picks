@@ -1,3 +1,4 @@
+// Defines a sequelize model for the join/junction "user_movies" table
 export default (sequelize, DataTypes) => {
   const UserMovie = sequelize.define(
     "user_movies",
@@ -33,16 +34,19 @@ export default (sequelize, DataTypes) => {
     }
   );
 
+  
   UserMovie.associate = (models) => {
+    // Define the association between the User model and the user_movies model
     UserMovie.belongsTo(models.User, {
-      foreignKey: "user_id",
-      targetKey: "user_id",
-      onDelete: "CASCADE",
+      foreignKey: "user_id", // foreign key for the User model in the join table
+      targetKey: "user_id", // target the primary key of the user table
+      onDelete: "CASCADE", // delete record if user is deleted
     });
+    // Define the association between the Movies model and the user_movies model
     UserMovie.belongsTo(models.Movie, {
-      foreignKey: "movie_id",
-      targetKey: "id",
-      onDelete: "CASCADE",
+      foreignKey: "movie_id", // foreign key for the Movie model in the join table
+      targetKey: "id", // target the primary key of the movies table
+      onDelete: "CASCADE", // delete record if movie is deleted
     });
   };
 

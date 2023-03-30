@@ -1,3 +1,4 @@
+// Defines a sequelize model for the "users" table
 export default (sequelize, DataTypes) => {
   const User = sequelize.define(
     "user",
@@ -41,15 +42,12 @@ export default (sequelize, DataTypes) => {
     }
   );
 
+  // Define the association between the User model and the Movie model
   User.associate = function (models) {
     User.hasMany(models.User_movies, {
-      foreignKey: "user_id",
-      onDelete: "CASCADE",
+      foreignKey: "user_id", // foreign key for the User model in the join table
+      onDelete: "CASCADE", // Delete records in the join table if user is deleted
     });
-    // User.belongsToMany(models.Movie, {
-    //   through: models.User_movies,
-    //   foreignKey: "user_id"
-    // });
   };
 
   return User;
