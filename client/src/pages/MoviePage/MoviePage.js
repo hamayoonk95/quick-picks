@@ -125,7 +125,7 @@ const MoviePage = () => {
           <a
             className="google-btn"
             href={`https://www.google.com/search?q=${encodeURIComponent(
-              movie?.title || ""
+              movie?.title + " " + movie?.release_date + " Streaming" || ""
             )}`}
             target="_blank"
             rel="noopener noreferrer"

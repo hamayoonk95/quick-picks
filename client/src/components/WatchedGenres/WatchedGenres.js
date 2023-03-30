@@ -34,7 +34,7 @@ const WatchedGenres = ({ movies }) => {
       <div className="pie-title">Most watched Genres</div>
       <div className="pie-genre">
       {/* Responsive container for PieChart */}
-      <ResponsiveContainer  height={400}>
+      <ResponsiveContainer height={400}>
       {/* Piechart component */}
         <PieChart >
         <Pie
