@@ -2,7 +2,7 @@ import React from "react";
 import "./RouletteWheel.css";
 import { Wheel } from "react-custom-roulette";
 
-const defaultData = [{ option: "Roulette is empty", style: {backgroundColors: "#000"}}];
+const defaultData = [{ option: "Roulette is empty", style: {backgroundColor: "#000"}}];
 // Renders Roulette wheel from react-custom-roulette library
 const RouletteWheel = (props) => {
   return (

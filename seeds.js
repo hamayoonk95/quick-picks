@@ -1,6 +1,5 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
 import movies1 from "./seedData/movies1.js"
 import movies2 from "./seedData/movies2.js";
 dotenv.config();
@@ -131,44 +130,6 @@ connection.connect(function (err) {
         console.log('Movies2 inserted successfully!');
         connection.end();
       });
-
-      // const users = [
-      //   {
-      //     username: 'johndoe',
-      //     password: 'password123',
-      //     email: 'johndoe@example.com',
-      //     first_name: 'John',
-      //     last_name: 'Doe'
-      //   }
-      // ];
-
-      // const salt = bcrypt.genSalt();
-      // const hashedPassword = bcrypt.hash(users[0].password, salt);
-      // users[0].password = hashedPassword;
-
-      // connection.query('INSERT INTO users SET ?', users, (err, results) => {
-      //     if(err) throw err;
-      //     console.log("Added user: ", results.insertId);
-
-      //     const user_id = results.insertId;
-      //     const movie_ids = [1,2,3,4,5];
-
-      //     const userMovies = [];
-
-      //     for (let i = 0; i < movie_ids.length; i++) {
-      //       const userMovie = {
-      //         user_id: user_id,
-      //         movie_id: movie_ids[i]
-      //       };
-      //       userMovies.push(userMovie);
-      //     };
-      //     console.log(userMovies);
-      //     connection.query('INSERT INTO user_movies SET ?', userMovies, function (err, results) {
-      //       if (err) throw err;
-      //       console.log('Added user movies:', results.affectedRows);
-      //       connection.end();
-      //     });
-      // })
     });
   });
 });
