@@ -49,7 +49,7 @@ const MoviePage = () => {
     const fetchData = async () => {
       if (movie) {
         const data = await getAvailability(movie.tmdb_id);
-        if (data.length > 0) {
+        if (data && data.length > 0) {
           setStreamingService(data[0].sources);
           setIsLoading(false);
         }
