@@ -22,3 +22,11 @@ To start the application, navigate to the root directory of the project and ente
 
 "npm start"
 This will start the development server and open the application in your default browser.
+
+Note: If you are using Node version above 16 then in the package.json in the client folder, change the line
+
+"start": "react-scripts start"
+
+to 
+
+"start": "react-scripts --openssl-legacy-provider start"

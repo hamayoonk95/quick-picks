@@ -8,7 +8,7 @@ const getAvailability = async (id) => {
         url: `https://streamlinewatch-streaming-guide.p.rapidapi.com/movies/${id}`,
         params: {platform: 'web', region: 'US'},
         headers: {
-            'X-RapidAPI-Key': '227d8326b3mshb4bc93615ac8c9ep130eb5jsn5dbb002a702d',
+            'X-RapidAPI-Key': '8d5607ebbbmshfbac09b4b2ad564p14f32bjsnff83f0981c92',
             'X-RapidAPI-Host': 'streamlinewatch-streaming-guide.p.rapidapi.com'
           }
       };
